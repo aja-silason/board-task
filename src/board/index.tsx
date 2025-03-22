@@ -4,16 +4,23 @@ import { LoginInput } from "./components/input/login.input";
 import { FacebookLogo, GithubLogo, GoogleLogo } from "@phosphor-icons/react";
 import logoBoard from "../assets/logo-board.png";
 import { ThinText } from "./components/text/thintext";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useLogin } from "./hook/auth/useLogin";
 
-export function LogIn(){
+type props = {
+    user: any
+}
+
+export function LogIn({user}: props){
 
     const time = new Date();
     const year = time?.getFullYear();
 
     const {data, handleChange, handleSubmit, handleLoginWithGoogle, handleLoginFacebook, handleLoginGithub} = useLogin();
 
+    if(user){
+        <Navigate to="/home"></Navigate>
+    }
 
     return (
         <div className={`w-full md:h-screen flex flex-col items-center justify-center`}>

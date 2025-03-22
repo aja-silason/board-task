@@ -32,7 +32,7 @@ export function RoutesApp() {
 
             <Routes>
                 <Route path="*" element={<NotFound/>} />
-                <Route path="/" element={<LogIn/>} />
+                <Route path="/" element={<LogIn user={user}/>} />
 
                 <Route path="/home" element={<ProtectedRoute user={user}><Home/></ProtectedRoute>} />
                 
