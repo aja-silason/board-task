@@ -52,6 +52,10 @@ export const useLogin = () => {
 
             const res = await signInWithEmailAndPassword(auth, payload?.email, payload?.password);
 
+            localStorage?.setItem("userData", JSON.stringify(res?.user));
+
+            navigate("/home", {replace: true});
+
             console.log(res.user);
 
             setIsLoading(false);
@@ -62,8 +66,6 @@ export const useLogin = () => {
             setData({email: "", password: ""})
 
         } catch (error: any) {
-
-            console.log(error?.code?.includes("auth/invalid-credential"));
 
             if(error?.code?.includes("auth/invalid-credential")){
                 toast.warning("Credênciais incorrectas", {duration: 3000});

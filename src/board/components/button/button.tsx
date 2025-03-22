@@ -14,5 +14,6 @@ export const Button = ({text, type, onClick}: props) => {
         <button type={type ?? "button"} onClick={onClick} className={`border p-[.8em] rounded-[.5em]
             ${theme == "dark" ? 'bg-white' : 'bg-black  text-[#fff]'}
         `}>{text}</button>
+
     )
 }
