@@ -1,5 +1,5 @@
 import { Moon, Sun } from "@phosphor-icons/react"
-import { useTheme } from "../../context/themeContext"
+import { useTheme } from "../../context/theme.context"
 
 export const ButtonTheme = () => {
 

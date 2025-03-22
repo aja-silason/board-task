@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import { useTheme } from "../../context/themeContext"
+import { useTheme } from "../../context/theme.context"
 
 type props = {
     social_midia_logo: ReactNode,
