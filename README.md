@@ -20,6 +20,8 @@ monitorar o progresso de projetos de forma eficaz..
 - [Uso](#uso)
 - [Contribuição](#contribuição)
 - [Licença](#licença)
+- [Tecnologias](#tecnologias)
+- [Extras](#extra)
 
 ## Instalação
 Siga os passos abaixo para rodar o projeto localmente:
