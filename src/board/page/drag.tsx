@@ -47,7 +47,7 @@ const Column: React.FC<ColumnProps> = ({ items, onDrop, columnId }) => {
         <div
           key={item.id}
           draggable
-          onDragStart={(e) => handleDragStart(e, item.id)}
+          onDragStart={(e) => handleDragStart(e, item?.id)}
           className="item"
           style={{
             padding: "10px",
