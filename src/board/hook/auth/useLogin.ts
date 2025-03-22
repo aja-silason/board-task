@@ -3,6 +3,7 @@ import { ChangeEvent, FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { auth } from "../../../firebase.config";
+//import {} from ;
 
 type props = {
     email: string,
@@ -76,6 +77,16 @@ export const useLogin = () => {
             setIsLoading(false)
         }
 
+    }
+
+    const handleLoginWithGoogle = async () => {
+        try {
+            
+            //const res = await auth.sig
+
+        } catch (error) {
+            toast.warning("Erro ao autenticar o usuário, tente novamente mais tarde");
+        }
     }
 
     return {data, isLoading, handleChange, handleSubmit}

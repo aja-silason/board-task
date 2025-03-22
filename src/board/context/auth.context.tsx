@@ -18,7 +18,7 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
     )
 }
 
-export const useTheme = () => {
+export const useAuth = () => {
     const context = useContext(AuthContext);
     if(!context){
         throw new Error("The context must be inside to provider");
