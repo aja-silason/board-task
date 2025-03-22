@@ -5,6 +5,8 @@ import { LoginInput } from "./components/input/login.input";
 import { ArrowLeft, FacebookLogo, GithubLogo, GoogleLogo } from "@phosphor-icons/react";
 
 import logoBoard from "../../public/logo-board.png";
+import { ButtonTheme } from "./components/button/theme.button";
+import { ThinText } from "./components/text/thintext";
 
 enum LOGINSTEP {
     step_email = 1,
@@ -29,13 +31,21 @@ export function LogIn(){
     }
 
     return (
-        <div className="w-full md:h-screen border flex items-center justify-center">
-            <div className="flex flex-col items-center justify-center border w-[40em] rounded-[.5em] gap-[1em] p-[4em]">
+        <div className={`w-full md:h-screen flex items-center justify-center`}>
+
+            <div className={`flex flex-col items-center justify-center border w-[40em] rounded-[.5em] gap-[1em] p-[4em]`}>
+                
+                <div className="flex justify-end items-end w-full">
+                    <ButtonTheme />
+                </div>
 
                 <div className="flex flex-col text-center mb-[1em]">
                     <img src={logoBoard} alt="Logo Board" className="w-[18em]"/>
                     <p className="text-[12pt] font-[500]">Entre</p>
                     <p className="text-[12pt] font-[500]">Gerencia as suas tarefas no quadro</p>
+                    
+                    <ThinText text="Gerencia as suas tarefas no quadro"/>
+
                 </div>
 
                 <div className="flex flex-col w-full">
@@ -60,10 +70,6 @@ export function LogIn(){
 
                         <ClickButton onClick={step == LOGINSTEP.step_email ? handleStepEmail: handleStepPassword} text={ step == LOGINSTEP.step_email ? "Próximo" : "Entrar"} />
 
-
-
-                        {//<button className="border p-[.8em]">Login BTN</button>
-                        }
 
                         <div className="flex flex-col gap-[.7em]">
                             <span className="text-center font-[500] text-gray-500">Entrar com</span>

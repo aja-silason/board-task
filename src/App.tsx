@@ -1,8 +1,11 @@
+import { ThemeProvider } from './board/context/themeContext'
 import { RoutesApp } from './routes'
 
 function App() {
   return (
-    <RoutesApp/>
+    <ThemeProvider>
+      <RoutesApp/>
+    </ThemeProvider>
   )
 }
 
