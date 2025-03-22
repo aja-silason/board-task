@@ -33,24 +33,28 @@ export function LogIn(){
             <div className="flex flex-col items-center justify-center border w-[40em] rounded-[.5em] gap-[1em] p-[4em]">
 
                 <div className="flex flex-col text-center mb-[1em]">
-                    <p></p>
-                    <img src={logoBoard} alt="" />
+                    <img src={logoBoard} alt="Logo Board" className="w-[18em]"/>
                     <p className="text-[12pt] font-[500]">Entre</p>
                     <p className="text-[12pt] font-[500]">Gerencia as suas tarefas no quadro</p>
                 </div>
 
                 <div className="flex flex-col w-full">
                     <form action="" className="w-full flex flex-col gap-[2em]">
-                        <LoginInput placeholder="Insira seu email" type="email" required/>
 
-                        <LoginInput placeholder="Sua password" type="email" required/>
+                        {
+                            step == LOGINSTEP.step_email && <LoginInput placeholder="Insira seu email" type="email" required/>
+                        }
+
 
                         {
                             step == LOGINSTEP.step_password && (
-                                <button type="button" className="flex gap-[.5em] items-center border-none bg-none" onClick={handleStepBack}>
-                                    <ArrowLeft/>
-                                    Voltar
-                                </button>
+                                <>
+                                    <LoginInput placeholder="Sua password" type="email" required/>
+                                    <button type="button" className="flex gap-[.5em] items-center border-none bg-none" onClick={handleStepBack}>
+                                        <ArrowLeft/>
+                                        Voltar
+                                    </button>
+                                </>
                             )
                         }
 

@@ -7,13 +7,13 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCKnAYLcBWpvJwt-geUABAC-oD-hMXXWtQ",
-  authDomain: "borad-task.firebaseapp.com",
-  projectId: "borad-task",
-  storageBucket: "borad-task.firebasestorage.app",
-  messagingSenderId: "334127106823",
-  appId: "1:334127106823:web:72dba0815009df061713a2",
-  measurementId: "G-CT9L413LP0"
+  apiKey: process.env.FB_APIKEY,
+  authDomain: process.env.FB_AUTH_DOMAIN,
+  projectId: process.env.FB_PROJEDT_ID,
+  storageBucket: process.env.FB_STORAGE_BUCKET,
+  messagingSenderId: process.env.FB_MESSAGING_SENDER_ID,
+  appId: process.env.FB_APP_ID,
+  measurementId: process.env.FB_MEASUREMENT_ID
 };
 
 // Initialize Firebase
@@ -21,7 +21,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 
-if (!firebase.apps.length) {
+/*if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
   } else {
     firebase.app(); // Usar a instância existente
@@ -30,4 +30,4 @@ if (!firebase.apps.length) {
   const auth = firebase.auth();
   const firestore = firebase.firestore();
   
-  export { auth, firestore };
+  export { auth, firestore };*/
