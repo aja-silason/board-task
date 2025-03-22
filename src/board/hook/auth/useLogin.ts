@@ -1,6 +1,8 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { ChangeEvent, FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { auth } from "../../../firebase.config";
 
 type props = {
     email: string,
@@ -11,6 +13,7 @@ export const useLogin = () => {
 
     const [data, setData] = useState<props>({email: "", password: ""});
     const [isLoading, setIsLoading] = useState<boolean>(false);
+
 
     const navigate = useNavigate()
 
@@ -47,10 +50,9 @@ export const useLogin = () => {
                 }
             }
 
-            
-            console.log("DATA", payload);
-            
-            navigate('/home', { replace: true }); 
+            const res = await signInWithEmailAndPassword(auth, payload?.email, payload?.password);
+
+            console.log(res.user);
 
             setIsLoading(false);
             toast.success("Login efectuado com sucesso", {
@@ -59,10 +61,15 @@ export const useLogin = () => {
 
             setData({email: "", password: ""})
 
-        } catch (error) {
-            toast.warning("Algo ocorreu mal. Estamos resolvendo por você", {
-                duration: 3000
-            });
+        } catch (error: any) {
+
+            console.log(error?.code?.includes("auth/invalid-credential"));
+
+            if(error?.code?.includes("auth/invalid-credential")){
+                toast.warning("Credênciais incorrectas", {duration: 3000});
+                return;
+            }
+            
         } finally {
             setIsLoading(false)
         }

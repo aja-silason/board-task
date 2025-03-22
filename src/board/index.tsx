@@ -2,7 +2,7 @@ import { Button } from "./components/button/button";
 import { SocialMidiaCard } from "./components/card/socialmedia.card";
 import { LoginInput } from "./components/input/login.input";
 import { FacebookLogo, GithubLogo, GoogleLogo } from "@phosphor-icons/react";
-import logoBoard from "../../public/logo-board.png";
+import logoBoard from "../assets/logo-board.png";
 import { ThinText } from "./components/text/thintext";
 import { Link } from "react-router-dom";
 import { useLogin } from "./hook/auth/useLogin";

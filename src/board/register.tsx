@@ -1,7 +1,7 @@
 import { Button } from "./components/button/button";
 import { LoginInput } from "./components/input/login.input";
 
-import logoBoard from "../../public/logo-board.png";
+import logoBoard from "../assets/logo-board.png";
 import { ThinText } from "./components/text/thintext";
 import { Link } from "react-router-dom";
 import { useCreateAccount } from "./hook/auth/useCreateAccount";
@@ -30,13 +30,15 @@ export function Register(){
 
                             <LoginInput placeholder="Insira seu email" type="email" value={data?.email} onChange={handleChange} name="email" required/>
                             
+                            <LoginInput placeholder="Insira a sua password" type="text" value={data?.password} onChange={handleChange} name="password" required/>
+                            
+                            {/*
                             <LoginInput placeholder="Insira seu nome completo" type="text" value={data?.fullname} onChange={handleChange} name="fullname" required/>
                             
                             <LoginInput placeholder="Insira o seu telefone" type="text" value={data?.telephone} onChange={handleChange} name="telephone" required/>
                             
-                            <LoginInput placeholder="Insira a sua password" type="text" value={data?.password} onChange={handleChange} name="password" required/>
-                            
                             <LoginInput placeholder="Confirme sua password" type="text" value={data?.confirm_password} onChange={handleChange} name="confirm_password" required/>
+                            */}
                         
                         </div>
                         
