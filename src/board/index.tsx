@@ -12,7 +12,7 @@ export function LogIn(){
     const time = new Date();
     const year = time?.getFullYear();
 
-    const {data, handleChange, handleSubmit} = useLogin();
+    const {data, handleChange, handleSubmit, handleLoginWithGoogle, handleLoginFacebook, handleLoginGithub} = useLogin();
 
 
     return (
@@ -45,15 +45,15 @@ export function LogIn(){
 
                         <div className="flex flex-col gap-[.7em]">
                             <ThinText text="Entrar com" center/>
-                            <SocialMidiaCard social_midia_logo={<GoogleLogo size={25}/>} text="Google"/>
-
-                            <SocialMidiaCard social_midia_logo={<FacebookLogo size={25}/>} text="Facebook"/>
                             
-                            <SocialMidiaCard social_midia_logo={<GithubLogo size={25}/>} text="GitHub"/>
+                            <SocialMidiaCard social_midia_logo={<GoogleLogo size={25}/>} text="Google" onClick={handleLoginWithGoogle}/>
+
+                            <SocialMidiaCard social_midia_logo={<FacebookLogo size={25}/>} text="Facebook" onClick={handleLoginFacebook}/>
+                            
+                            <SocialMidiaCard social_midia_logo={<GithubLogo size={25}/>} text="GitHub" onClick={handleLoginGithub}/>
                         </div>
 
                         <Link to={'/register'}><ThinText text="Não possui conta? Criar conta" end/></Link>
-
 
                         <p className="text-[11pt] text-[gray] font-[400] text-center">{year} @ todos os direitos reservados a STETMENT MC</p>
 

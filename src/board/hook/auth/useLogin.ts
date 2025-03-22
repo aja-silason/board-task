@@ -1,8 +1,8 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { ChangeEvent, FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { auth } from "../../../firebase.config";
+import { auth, facebookProvider, githubProvider, googleProvider } from "../../../firebase.config";
 //import {} from ;
 
 type props = {
@@ -80,14 +80,53 @@ export const useLogin = () => {
     }
 
     const handleLoginWithGoogle = async () => {
+
         try {
             
-            //const res = await auth.sig
+            const res = await signInWithPopup(auth, googleProvider);
+            const user = res.user;
+
+            console.log("User", user);
+
+            navigate("/home", {replace: true});
 
         } catch (error) {
-            toast.warning("Erro ao autenticar o usuário, tente novamente mais tarde");
+            console.log(error)
+            toast.warning("Erro ao autenticar o usuário da google, tente novamente mais tarde", {duration: 3000});
         }
     }
 
-    return {data, isLoading, handleChange, handleSubmit}
+    const handleLoginFacebook = async () => {
+        try {
+
+            const res = await signInWithPopup(auth, facebookProvider)
+            const user = res.user;
+            
+            console.log("User gitub", user);
+            
+            navigate("/home", {replace: true})
+            
+        } catch (error) {
+            console.log(error)
+            toast.warning("Erro ao autenticar o usuário com o Facebook, tente novamente mais tarde", {duration: 3000})
+        }
+    }
+
+    const handleLoginGithub = async () => {
+        try {
+            
+            const res = await signInWithPopup(auth, githubProvider)
+            const user = res.user;
+
+            console.log("User gitub", user);
+
+            navigate("/home", {replace: true})
+
+        } catch (error) {
+            console.log(error)
+            toast.warning("Erro ao autenticar o usuário com o GitHub, tente novamente mais tarde", {duration: 3000});
+        }
+    }
+
+    return {data, isLoading, handleChange, handleSubmit ,handleLoginWithGoogle, handleLoginFacebook, handleLoginGithub}
 }
