@@ -53,7 +53,7 @@ E a engenharia é da inteira responsabilidade da **STETMENT MC**, qualquer forma
 
 ![React](https://img.shields.io/badge/React-^18.3.1-blue)<br>
 
-![React Dom](https://img.shields.io/badge/React%20Dom-^18.3.1-green)<br>
+![React Router Dom](https://img.shields.io/badge/React%20Dom-^18.3.1-green)<br>
 
 ![Vite](https://img.shields.io/badge/Vite-^6.0.5-purple)<br>
 

@@ -1,0 +1,23 @@
+import { useNavigate } from "react-router-dom"
+
+//import logo from "./../assets/anticost-logo.jpg";
+
+export const NotFound = () => {
+
+    const navigate = useNavigate();
+
+    const handleStart = () => {
+        localStorage.clear();
+        navigate("/", {replace: true});    
+    }
+
+    return (
+        <div className="h-[100vh] flex flex-col gap-[2em] items-center justify-center">
+
+            <h2>404 - Página não encontrada</h2>
+            <h2>Você não deveria estar aqui, por favor clique no link abaixo para prosseguir em segurança</h2>
+            <button onClick={handleStart} className="text-[#264A7D] underline">Voltar</button>
+
+        </div>
+    )
+}
