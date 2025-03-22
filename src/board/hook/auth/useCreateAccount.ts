@@ -50,7 +50,7 @@ export const useCreateAccount = () => {
                         duration: 3000
                     });
                     return;
-                } else if(payload.password === payload.confirm_password){
+                } else if(payload.password !== payload.confirm_password){
                     toast.warning(`${payload.password && "Palavra passes"} não convergem`, {
                         duration: 3000
                     });
