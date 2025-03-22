@@ -1,17 +1,14 @@
-import { useTheme } from "../../context/themeContext"
-
 type props = {
     text: string
+    color?: string,
+    center?: boolean,
+    end?: boolean
 }
 
-export const ThinText = ({text}: props) => {
+export const ThinText = ({text, color, center, end}: props) => {
     
-    const {theme} = useTheme()
-
     return (
-        //<p className={`text-[12pt] 15pt font-[500] ${theme == "dark" && 'text-[#fff]'}`}>{text}</p>
-
-        <p className={`text-[12pt] 15pt font-[500]`}>{text}</p>
+        <p className={`text-[12pt] 15pt font-[500] ${center ? 'text-center' : end ? 'text-end' : null}  ${color == "gray" ? 'text-[gray]' : null} `}>{text}</p>
     )
 
 }

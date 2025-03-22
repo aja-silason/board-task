@@ -41,9 +41,8 @@ export function LogIn(){
 
                 <div className="flex flex-col text-center mb-[1em]">
                     <img src={logoBoard} alt="Logo Board" className="w-[18em]"/>
-                    <p className="text-[12pt] font-[500]">Entre</p>
-                    <p className="text-[12pt] font-[500]">Gerencia as suas tarefas no quadro</p>
-                    
+
+                    <ThinText text="Entre"/>
                     <ThinText text="Gerencia as suas tarefas no quadro"/>
 
                 </div>
@@ -62,7 +61,7 @@ export function LogIn(){
                                     <LoginInput placeholder="Sua password" type="email" required/>
                                     <button type="button" className="flex gap-[.5em] items-center border-none bg-none" onClick={handleStepBack}>
                                         <ArrowLeft/>
-                                        Voltar
+                                        <ThinText text="Voltar"/>
                                     </button>
                                 </>
                             )
@@ -72,7 +71,8 @@ export function LogIn(){
 
 
                         <div className="flex flex-col gap-[.7em]">
-                            <span className="text-center font-[500] text-gray-500">Entrar com</span>
+
+                            <ThinText text="Entrar com" center/>
                             <SocialMidiaCard social_midia_logo={<GoogleLogo size={25}/>} text="Google"/>
 
                             <SocialMidiaCard social_midia_logo={<FacebookLogo size={25}/>} text="Facebook"/>
@@ -80,7 +80,7 @@ export function LogIn(){
                             <SocialMidiaCard social_midia_logo={<GithubLogo size={25}/>} text="GitHub"/>
                         </div>
 
-                        <p className="text-[12pt] font-[500] text-end">Não possui conta? Criar conta</p>
+                        <ThinText text="Não possui conta? Criar conta" end/>
 
                         <p className="text-[11pt] text-[gray] font-[400] text-center">{year} @ todos os direitos reservados a STETMENT MC</p>
 
