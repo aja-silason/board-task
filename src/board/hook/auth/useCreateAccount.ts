@@ -4,12 +4,15 @@ import { toast } from "sonner";
 
 type props = {
     email: string,
-    password: string
+    fullname: string,
+    telephone: string,
+    password: string,
+    confirm_password: string,
 }
 
-export const useLogin = () => {
+export const useCreateAccount = () => {
 
-    const [data, setData] = useState<props>({email: "", password: ""});
+    const [data, setData] = useState<props>({email: "", fullname: "", telephone: "", password: "", confirm_password: ""});
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const navigate = useNavigate()
@@ -33,7 +36,10 @@ export const useLogin = () => {
             
             const payload: props = {
                 email: data?.email,
-                password: data?.password
+                fullname: data?.fullname,
+                telephone: data?.telephone,
+                password: data?.password,
+                confirm_password: data?.confirm_password
             }
 
             const isValidate: Array<keyof props> = ["email", "password"];
@@ -44,20 +50,26 @@ export const useLogin = () => {
                         duration: 3000
                     });
                     return;
+                } else if(payload.password === payload.confirm_password){
+                    toast.warning(`${payload.password && "Palavra passes"} não convergem`, {
+                        duration: 3000
+                    });
+                    return;
                 }
             }
 
             
             console.log("DATA", payload);
             
-            navigate('/home', { replace: true }); 
+            localStorage.setItem("userdata", JSON.stringify(payload));
+
+            navigate('/', { replace: true }); 
 
             setIsLoading(false);
-            toast.success("Login efectuado com sucesso", {
+            toast.success("Conta criada com sucesso", {
                 duration: 2000
             })
 
-            setData({email: "", password: ""})
 
         } catch (error) {
             toast.warning("Algo ocorreu mal. Estamos resolvendo por você", {

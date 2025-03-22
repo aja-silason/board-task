@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route  } from "react-router-dom";
 import { LogIn } from "../board";
 import { NotFound } from "../board/NotFound.screen";
 import { Register } from "../board/register";
+import { Home } from "../board/page";
 
 export function RoutesApp() {
     return (
@@ -10,7 +11,7 @@ export function RoutesApp() {
             <Routes>
                 <Route path="*" element={<NotFound/>} />
                 <Route path="/" element={<LogIn/>} />
-                <Route path="/home" element={<LogIn/>} />
+                <Route path="/home" element={<Home/>} />
                 <Route path="/register" element={<Register/>} />
             </Routes>
 
