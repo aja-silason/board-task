@@ -5,6 +5,6 @@ type props = {
 
 export const ClickButton = ({text, onClick}: props) => {
     return (
-        <button type="button" onClick={onClick}>{text}</button>
+        <button type="button" onClick={onClick} className="border p-[.8em]">{text}</button>
     )
 }

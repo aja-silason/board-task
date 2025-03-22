@@ -1,3 +1,8 @@
+![Logo-Board-Task](public/logo-board.png)
+
+[Logo-Board-Task](public/logo-board.png)
+
+
 # Board-Task
 
 Uma aplicação de gerenciamento de projetos, que serve de base de teste para adesão a STATEMENT MC
@@ -64,3 +69,17 @@ E a engenharia é da inteira responsabilidade da **STETMENT MC**, qualquer forma
 ![Axios](https://img.shields.io/badge/Axios-~1.8.4-orange)<br>
 
 ![Tailwind](https://img.shields.io/badge/Tailwindcss-~3.4.17-brown)<br>
+
+## Extra
+
+### Logotipo
+
+Criado no site Looka com a ajuda de IA interna
+
+**Link do logotipo criado para usar no projecto:**
+
+    https://looka.com/s/215817245
+
+**Link da plataforma Looka**
+
+    copie e cole no navegador: https://looka.com
