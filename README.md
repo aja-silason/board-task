@@ -1,54 +1,62 @@
-# React + TypeScript + Vite
+# Board-Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Uma aplicação de gerenciamento de projetos, que serve de base de teste para adesão a STATEMENT MC
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Build Status](https://img.shields.io/badge/Status-developing-brightgreen)
 
-## Expanding the ESLint configuration
+## Descrição
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Este projecto foi apresentado como teste de desenvolvimento. Descrito da seguinte maneira: Uma aplicação de gerenciamento de projetos com interface intuitiva e funcionalidades avançadas. A aplicação deve permitir aos usuários criar, organizar, colaborar e
+monitorar o progresso de projetos de forma eficaz..
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Tabela de Conteúdos
+- [Instalação](#instalação)
+- [Uso](#uso)
+- [Contribuição](#contribuição)
+- [Licença](#licença)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Instalação
+Siga os passos abaixo para rodar o projeto localmente:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/aja-silason/board-task.git
+2. Navegue até a pasta do projeto:
+    ```bash
+    cd board-task
+3. Instale as dependências:
+    ```bash
+    npm install
+4. Inicie o servidor:
+    ```bash
+    npm run board
+## Uso
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Após a instalação, abra seu navegador e acesse ``http://localhost:5173/`` para começar a usar a aplicação.
+
+## Contribuição
+
+As contribuições para esse projecto está em análise... 
+
+## Licença
+
+Este projeto está sob a Licença MIT<br>
+
+E a engenharia é da inteira responsabilidade da **STETMENT MC**, qualquer forma de usar a aplicação entrar em contacto com:  [Anania Augusto](ananiasjaimeaugusto@gmail.com)
+
+## Tecnologias
+
+![React](https://img.shields.io/badge/React-^18.3.1-blue)<br>
+
+![React Dom](https://img.shields.io/badge/React%20Dom-^18.3.1-green)<br>
+
+![Vite](https://img.shields.io/badge/Vite-^6.0.5-purple)<br>
+
+![Typescript](https://img.shields.io/badge/TypeScript-~5.6.2-blue)<br>
+
+![SWR](https://img.shields.io/badge/SWR-^2.3.3-yellow)<br>
+
+![Axios](https://img.shields.io/badge/Axios-~1.8.4-orange)<br>
+
+![Tailwind](https://img.shields.io/badge/Tailwindcss-~3.4.17-brown)<br>
