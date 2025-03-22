@@ -8,12 +8,13 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { auth } from "../firebase.config";
 import { useAuth } from "../board/context/auth.context";
+import { ProtectedRoute } from "./protectedRoutes";
 
 export function RoutesApp() {
 
     const {user, setUser} = useAuth();
 
-    useEffect(() => {
+    /*useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if(user){
                 setUser(user);
@@ -24,7 +25,7 @@ export function RoutesApp() {
 
         return () => unsubscribe();
 
-    }, [])
+    }, [])*/
 
     return (
         <Router>
@@ -32,7 +33,9 @@ export function RoutesApp() {
             <Routes>
                 <Route path="*" element={<NotFound/>} />
                 <Route path="/" element={<LogIn/>} />
-                <Route path="/home" element={<Home/>} />
+                <Route path="/home" element={
+                    <ProtectedRoute user={user}><Home/></ProtectedRoute>
+                    } />
                 <Route path="/drag" element={<DragAndDropApp/>} />
                 <Route path="/register" element={<Register/>} />
             </Routes>
