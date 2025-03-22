@@ -1,43 +1,31 @@
-import { useState } from "react";
-import { ClickButton } from "./components/button/click.button";
+import { Button } from "./components/button/button";
 import { SocialMidiaCard } from "./components/card/socialmedia.card";
 import { LoginInput } from "./components/input/login.input";
-import { ArrowLeft, FacebookLogo, GithubLogo, GoogleLogo } from "@phosphor-icons/react";
-
+import { FacebookLogo, GithubLogo, GoogleLogo } from "@phosphor-icons/react";
 import logoBoard from "../../public/logo-board.png";
-import { ButtonTheme } from "./components/button/theme.button";
 import { ThinText } from "./components/text/thintext";
-
-enum LOGINSTEP {
-    step_email = 1,
-    step_password = 2
-}
+import { Link } from "react-router-dom";
+import { useLogin } from "./hook/auth/useLogin";
 
 export function LogIn(){
-
-    const [step, setStep] = useState<number>(LOGINSTEP.step_email);
 
     const time = new Date();
     const year = time?.getFullYear();
 
+    const {data, handleChange, handleSubmit} = useLogin();
 
-    const handleStepEmail = () => setStep(LOGINSTEP.step_password) 
-
-    const handleStepBack = () => setStep(LOGINSTEP.step_email);
-
-    const handleStepPassword = () => {
-        setStep(LOGINSTEP.step_email)
-        console.log("Password to Email")
-    }
 
     return (
-        <div className={`w-full md:h-screen flex items-center justify-center`}>
+        <div className={`w-full md:h-screen flex flex-col items-center justify-center`}>
+            
+            {
+            //<div className="flex justify-end items-start w-full">
+              //  <ButtonTheme />
+            //</div>
+            }
 
             <div className={`flex flex-col items-center justify-center border w-[40em] rounded-[.5em] gap-[1em] p-[4em]`}>
                 
-                <div className="flex justify-end items-end w-full">
-                    <ButtonTheme />
-                </div>
 
                 <div className="flex flex-col text-center mb-[1em]">
                     <img src={logoBoard} alt="Logo Board" className="w-[18em]"/>
@@ -48,30 +36,14 @@ export function LogIn(){
                 </div>
 
                 <div className="flex flex-col w-full">
-                    <form action="" className="w-full flex flex-col gap-[2em]">
-
-                        {
-                            step == LOGINSTEP.step_email && <LoginInput placeholder="Insira seu email" type="email" required/>
-                        }
+                    <form onSubmit={handleSubmit} className="w-full flex flex-col gap-[2em]">
+                        <LoginInput value={data?.email} name="email" onChange={handleChange} placeholder="Insira seu email" type="email" required/>
+                        <LoginInput placeholder="Sua password" type="password" value={data?.password} name="password" onChange={handleChange} required/>
 
 
-                        {
-                            step == LOGINSTEP.step_password && (
-                                <>
-                                    <LoginInput placeholder="Sua password" type="email" required/>
-                                    <button type="button" className="flex gap-[.5em] items-center border-none bg-none" onClick={handleStepBack}>
-                                        <ArrowLeft/>
-                                        <ThinText text="Voltar"/>
-                                    </button>
-                                </>
-                            )
-                        }
-
-                        <ClickButton onClick={step == LOGINSTEP.step_email ? handleStepEmail: handleStepPassword} text={ step == LOGINSTEP.step_email ? "Próximo" : "Entrar"} />
-
+                        <Button text="Entrar" type="submit"/>
 
                         <div className="flex flex-col gap-[.7em]">
-
                             <ThinText text="Entrar com" center/>
                             <SocialMidiaCard social_midia_logo={<GoogleLogo size={25}/>} text="Google"/>
 
@@ -80,7 +52,8 @@ export function LogIn(){
                             <SocialMidiaCard social_midia_logo={<GithubLogo size={25}/>} text="GitHub"/>
                         </div>
 
-                        <ThinText text="Não possui conta? Criar conta" end/>
+                        <Link to={'/register'}><ThinText text="Não possui conta? Criar conta" end/></Link>
+
 
                         <p className="text-[11pt] text-[gray] font-[400] text-center">{year} @ todos os direitos reservados a STETMENT MC</p>
 

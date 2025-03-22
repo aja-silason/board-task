@@ -1,30 +1,37 @@
 import { useState } from "react";
-import { ClickButton } from "./components/button/click.button";
+import { Button } from "./components/button/button";
 import { SocialMidiaCard } from "./components/card/socialmedia.card";
 import { LoginInput } from "./components/input/login.input";
 import { ArrowLeft, FacebookLogo, GithubLogo, GoogleLogo } from "@phosphor-icons/react";
 
 import logoBoard from "../../public/logo-board.png";
+import { ThinText } from "./components/text/thintext";
+import { Link } from "react-router-dom";
 
-enum LOGINSTEP {
+enum SIGUPSTEP {
     step_email = 1,
-    step_password = 2
+    step_number = 2,
+    step_password = 3,
 }
 
 export function Register(){
 
-    const [step, setStep] = useState<number>(LOGINSTEP.step_email);
+    const [step, setStep] = useState<number>(SIGUPSTEP.step_email);
 
     const time = new Date();
     const year = time?.getFullYear();
 
 
-    const handleStepEmail = () => setStep(LOGINSTEP.step_password) 
+    const handleStepEmail = () => setStep(SIGUPSTEP.step_number) 
 
-    const handleStepBack = () => setStep(LOGINSTEP.step_email);
+    const handleStepNumber = () => setStep(SIGUPSTEP.step_password);
+    
+    const handleStepBackEmail = () => setStep(SIGUPSTEP.step_email);
+    
+    const handleStepBackNumber = () => setStep(SIGUPSTEP.step_number);
 
     const handleStepPassword = () => {
-        setStep(LOGINSTEP.step_email)
+        setStep(SIGUPSTEP.step_email)
         console.log("Password to Email")
     }
 
@@ -34,7 +41,7 @@ export function Register(){
 
                 <div className="flex flex-col text-center mb-[1em]">
                     <img src={logoBoard} alt="Logo Board" className="w-[18em]"/>
-                    <p className="text-[12pt] font-[500]">Entre</p>
+                    <p className="text-[12pt] font-[500]">Criar Conta</p>
                     <p className="text-[12pt] font-[500]">Gerencia as suas tarefas no quadro</p>
                 </div>
 
@@ -42,23 +49,35 @@ export function Register(){
                     <form action="" className="w-full flex flex-col gap-[2em]">
 
                         {
-                            step == LOGINSTEP.step_email && <LoginInput placeholder="Insira seu email" type="email" required/>
-                        }
+                            step == SIGUPSTEP.step_email ? (
+                                <div className="flex flex-col gap-[.8em]">
+                                    <LoginInput placeholder="Insira seu email" type="email" required/>
+                                    <LoginInput placeholder="Insira seu Nome completo" type="email" required/>
+                                </div>
+                            ) : 
 
-
-                        {
-                            step == LOGINSTEP.step_password && (
-                                <>
-                                    <LoginInput placeholder="Sua password" type="email" required/>
-                                    <button type="button" className="flex gap-[.5em] items-center border-none bg-none" onClick={handleStepBack}>
+                            step == SIGUPSTEP.step_number ? (
+                                <div className="flex flex-col gap-[.8em]">
+                                    <LoginInput placeholder="Insira seu número telefonico" type="email" required/>
+                                    <button type="button" className="flex gap-[.5em] items-center border-none bg-none" onClick={handleStepBackEmail}>
                                         <ArrowLeft/>
                                         Voltar
                                     </button>
-                                </>
-                            )
+                                </div>
+                            ) : (
+                                <div className="flex flex-col gap-[.8em]">
+                                    <LoginInput placeholder="Insira sua password" type="email" required/>
+                                    <LoginInput placeholder="Confirme sua password" type="email" required/>
+                                    <button type="button" className="flex gap-[.5em] items-center border-none bg-none" onClick={handleStepBackNumber}>
+                                        <ArrowLeft/>
+                                        Voltar
+                                    </button>
+                                </div>
+                            ) 
+                            
                         }
 
-                        <ClickButton onClick={step == LOGINSTEP.step_email ? handleStepEmail: handleStepPassword} text={ step == LOGINSTEP.step_email ? "Próximo" : "Entrar"} />
+                        <Button onClick={step == SIGUPSTEP.step_email ? handleStepEmail: step == SIGUPSTEP.step_number ? handleStepNumber : handleStepPassword} text={ step == SIGUPSTEP.step_email ? "Próximo" : step == SIGUPSTEP.step_number ? "Próximo" : "Entrar"} />
 
 
 
@@ -74,7 +93,7 @@ export function Register(){
                             <SocialMidiaCard social_midia_logo={<GithubLogo size={25}/>} text="GitHub"/>
                         </div>
 
-                        <p className="text-[12pt] font-[500] text-end">Não possui conta? Criar conta</p>
+                        <Link to={"/"}><ThinText text="Tenho uma conta. Logar"/></Link>
 
                         <p className="text-[11pt] text-[gray] font-[400] text-center">{year} @ todos os direitos reservados a STETMENT MC</p>
 
