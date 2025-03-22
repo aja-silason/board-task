@@ -2,7 +2,7 @@ import React, { createContext, Dispatch, ReactNode, useContext, useState } from 
 
 type AuthProps = {
     user: any,
-    setUser: Dispatch<React.SetStateAction<string>>;
+    setUser: Dispatch<React.SetStateAction<any>>;
 }
 
 const AuthContext = createContext<AuthProps | undefined>(undefined);
