@@ -35,6 +35,10 @@ Siga os passos abaixo para rodar o projeto localmente:
 
 Após a instalação, abra seu navegador e acesse ``http://localhost:5173/`` para começar a usar a aplicação.
 
+## Produção 
+
+Poderá acessar a aplicação em produção pelo link:``em breve``
+
 ## Contribuição
 
 As contribuições para esse projecto está em análise... 
