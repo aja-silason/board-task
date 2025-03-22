@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route  } from "react-router-dom";
-import { LogIn } from "../modules";
-import { NotFound } from "../modules/NotFound.screen";
+import { LogIn } from "../board";
+import { NotFound } from "../board/NotFound.screen";
 
 export function RoutesApp() {
     return (

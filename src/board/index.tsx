@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { ClickButton } from "../common/components/button/click.button";
-import { SocialMidiaCard } from "../common/components/card/socialmedia.card";
-import { LoginInput } from "../common/components/input/login.input";
+import { ClickButton } from "./components/button/click.button";
+import { SocialMidiaCard } from "./components/card/socialmedia.card";
+import { LoginInput } from "./components/input/login.input";
 import { ArrowLeft, FacebookLogo, GithubLogo, GoogleLogo } from "@phosphor-icons/react";
 
 import logoBoard from "../../public/logo-board.png";

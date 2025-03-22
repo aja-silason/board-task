@@ -1,4 +1,4 @@
-export function HomeManager(){
+export function Home(){
 
     return (
         <div>
