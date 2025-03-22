@@ -38,7 +38,9 @@ Siga os passos abaixo para rodar o projeto localmente:
     npm run board
 ## Uso
 
-Após a instalação, abra seu navegador e acesse ``http://localhost:5173/`` para começar a usar a aplicação.
+Após a instalação, copie o link abaixo, abra seu navegador e acesse a aplicação.
+    
+    http://localhost:5173/
 
 ## Produção 
 
@@ -82,4 +84,4 @@ Criado no site Looka com a ajuda de IA interna
 
 **Link da plataforma Looka**
 
-    copie e cole no navegador: https://looka.com
+    https://looka.com
