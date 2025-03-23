@@ -6,6 +6,8 @@ import { Home } from "../board/page";
 //import DragAndDropApp from "../board/page/drag";
 import { useAuth } from "../board/context/auth.context";
 import { ProtectedRoute } from "./protectedRoutes";
+import { Task } from "../board/page/task";
+import { Board } from "../board/page/board";
 
 export function RoutesApp() {
 
@@ -19,7 +21,8 @@ export function RoutesApp() {
                 <Route path="/" element={<LogIn user={user}/>} />
 
                 <Route path="/home" element={<ProtectedRoute user={user}><Home/></ProtectedRoute>} />
-                <Route path="/tasks" element={<ProtectedRoute user={user}><Home/></ProtectedRoute>} />
+                <Route path="/tasks" element={<ProtectedRoute user={user}><Task/></ProtectedRoute>} />
+                <Route path="/board" element={<ProtectedRoute user={user}><Board/></ProtectedRoute>} />
                 <Route path="/task/:id" element={<ProtectedRoute user={user}><Home/></ProtectedRoute>} />
                 
                 {/*<Route path="/drag" element={<DragAndDropApp/>} />*/}

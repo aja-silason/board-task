@@ -33,7 +33,7 @@ export const TaskList = ({data, hoverMessage, onClick}: props) => {
                 </div>
 
                 <div className="flex flex-col items-center justify-center w-[50%]">
-                    <Text text={description} style={{fontSize: "11pt"}} color="gray"/>
+                    <Text text={5} style={{fontSize: "11pt"}} color="gray"/>
                 </div>
                 
                 <div className="flex flex-col items-end justify-center w-[50%]">

@@ -13,7 +13,7 @@ export type taskProps = {
     status: string
 }
 
-export function Home(){
+export function Board(){
 
     const storageUserData = localStorage?.getItem("userData");
     const parsedUserData = storageUserData && JSON.parse(storageUserData);
@@ -37,7 +37,7 @@ export function Home(){
                     <div className=" flex gap-[1.5em] w-full flex-wrap h-[30em] overflow-auto">
 
                         {
-                            tasklist?.slice(0,5)?.map((task) => {
+                            tasklist?.map((task) => {
                                 return (
                                     <TaskCard key={task?.id} hoverMessage={task?.task_title} onClick={() => alert(`Abriu Tarefa ${task?.id}`)} data={task}/>
                                 )
@@ -60,7 +60,7 @@ export function Home(){
 
 
                     {
-                            tasklist?.slice(0,2)?.map((task) => {
+                            tasklist?.map((task) => {
                                 return (
                                     <TaskList key={task?.id} hoverMessage={task?.task_title} onClick={() => alert(`Abriu Tarefa ${task?.id}`)} data={task}/>
                                 )
