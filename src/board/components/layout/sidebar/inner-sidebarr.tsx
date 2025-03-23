@@ -23,9 +23,9 @@ export const InnerTaskSideBar = () => {
         <div className="w-[18%] px-[.4em] pt-[1em] flex flex-col gap-[.8em] bg-white">
             
             {
-                menu?.map((menu: menuProps) => {
+                menu?.map((menu: menuProps, index: number) => {
                     return (
-                        <InnerTabButton icon={menu?.icon} title={menu?.menutext} onClick={menu?.to} isActive={menu?.where} key={1} />
+                        <InnerTabButton icon={menu?.icon} title={menu?.menutext} onClick={menu?.to} isActive={menu?.where} key={index} />
                     )
                 })
             }

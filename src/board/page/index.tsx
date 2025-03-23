@@ -7,6 +7,7 @@ import { Text } from "../components/text/text";
 import { useInternNavigation } from "../hook/behavior/useNavigation";
 import { useGetData } from "../hook/get/useGetData";
 import { removeNameIntoEmail } from "../utils/removeNameIntoTheEmail";
+import { NoData } from "../components/behavior/nodata";
 
 export type taskProps = {
     id: number,
@@ -47,12 +48,14 @@ export function Home(){
                     <div className=" flex gap-[1.5em] w-full flex-wrap h-[30em] overflow-auto">
 
                         {
-                           data?.map((task: any) => {
+                        data?.length > 0 ?
+                           data?.map((task: any, index: number) => {
                                 return (
-                                    <TaskCard key={task?.boardId} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.boardId) } data={task}/>
+                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
                                 )
-                            })
-
+                            }) : (
+                                <NoData text="Sem informação para mostrar no momento"/>
+                            )
 
                         }
 
@@ -72,11 +75,14 @@ export function Home(){
 
 
                         {
+                            data?.length > 0 ? 
                             data?.slice(0,2)?.map((task) => {
                                 return (
                                     <TaskList key={task?.id} hoverMessage={task?.title} onClick={() => alert(`Abriu Tarefa ${task?.id}`)} data={task}/>
                                 )
-                            })
+                            }) : (
+                                <NoData text="Não pertence a outras tarefas no momento"/>
+                            )
                         }
                     </div>
 

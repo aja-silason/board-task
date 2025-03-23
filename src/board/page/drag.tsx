@@ -1,4 +1,4 @@
-/*import React, { useState } from "react";
+import React, { useState } from "react";
 
 // Componente para um item da coluna
 type Item = {
@@ -74,13 +74,13 @@ const DragAndDropApp: React.FC = () => {
   ]);
 
   const [column2Items, setColumn2Items] = useState<Item[]>([
-    /*{ id: "4", text: "Item 4" },
+    { id: "4", text: "Item 4" },
     { id: "5", text: "Item 5" },
     { id: "6", text: "Item 6" },
   ]);
 
   const [column3Items, setColumn3Items] = useState<Item[]>([
-    /*{ id: "7", text: "Item 7" },
+    { id: "7", text: "Item 7" },
     { id: "8", text: "Item 8" },
     { id: "9", text: "Item 9" },
   ]);
@@ -138,4 +138,4 @@ const DragAndDropApp: React.FC = () => {
   );
 };
 
-export default DragAndDropApp;*/
+export default DragAndDropApp;

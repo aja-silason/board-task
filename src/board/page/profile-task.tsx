@@ -14,7 +14,7 @@ export type taskProps = {
 
 export function ProfileTask(){
 
-    const id = useParams();
+    const {id} = useParams();
 
     {/*
     const storageUserData = localStorage?.getItem("userData");
@@ -26,9 +26,9 @@ export function ProfileTask(){
 
     const {data} = useGetData("boards");
 
-    const filterTask: any = data?.filter((task) => task?.boardId?.includes(id))
+    const filterTask: any = data?.filter((task) => task?.id?.includes(id))[0]
 
-    console.log("Task", filterTask, data)
+    console.log("Task", filterTask, data, id)
 
     return (
         <Container>
@@ -37,7 +37,11 @@ export function ProfileTask(){
 
                 <InnerTaskContainer name_task={filterTask?.title}>
                     {
-                        isfirst ? (<p>Task</p> ): isSecond ? <p>Board</p> : isThird && <p>Participants</p> 
+                        isfirst ? (
+                        
+                            <p>Task</p> 
+
+                        ): isSecond ? <p>Board</p> : isThird && <p>Participants</p> 
                     }
                 </InnerTaskContainer>
 
