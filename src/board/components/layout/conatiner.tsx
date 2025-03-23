@@ -10,7 +10,7 @@ export const Container = ({children}: props) => {
     return (
         <div className="flex flex-col">
             <NavBar/>
-            <div>
+            <div className="flex gap-[1em]">
                 <SideBar/>
                 <div>
                     {children}

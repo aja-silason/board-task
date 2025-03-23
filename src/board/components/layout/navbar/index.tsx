@@ -19,9 +19,7 @@ export const NavBar = () => {
     const profilePicture = user?.photoURL;
     const oneLetter = user?.email?.split('')[0];
 
-    const aa = profilePicture ?? oneLetter;
-
-    console.log("Username", username, username, oneLetter, aa);
+    console.log("Username", username, username, oneLetter);
 
     return (
         <div className="w-full border flex justify-between py-[.5em] px-[.5em] items-center">
@@ -47,8 +45,6 @@ export const NavBar = () => {
                     }
 
                 </ProfileCard>
-
-                {/*<p>{username}</p>*/}
             </div>
 
         </div>

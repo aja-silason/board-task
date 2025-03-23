@@ -32,12 +32,6 @@ export function Home(){
     return (
         <Container>
             <p>Home Screen {filter}</p>
-            {/*<div>
-
-                Manager Home
-
-                
-                </div>*/}
                 <Button text="Terminar Sessão" onClick={handleSigOut}/>
         </Container>
     )
