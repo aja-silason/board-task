@@ -7,6 +7,8 @@ import { Input } from '../input-data/input';
 import { useCommom } from '../../context/common.context';
 import { Text } from '../text/text';
 import { X } from '@phosphor-icons/react';
+import { TextArea } from '../input-data/textarea';
+import { Button } from '../button/button';
 
 const style = {
   position: 'absolute',
@@ -14,7 +16,6 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 800,
-  height: 800,
   bgcolor: 'background.paper',
   border: '0px solid #000',
   boxShadow: 24,
@@ -65,10 +66,20 @@ export default function CreateTaskModal({children}: props) {
 
             <div className='flex flex-col gap-[1em] mt-[1em] h-[90%]'> 
 
-                <div className='flex flex-col h-full overflow-auto'>
+                <div className='flex flex-col h-full gap-[1em] overflow-auto'>
 
-                  <Text text="Tarefa *"/>
-                  <Input name="filter" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilter(e?.target?.value)} placeholder="" value={filter} type="text" style={{}}/>
+                  <div className='flex flex-col gap-[.5em]'>
+                    <Text text="Tarefa *"/>
+                    <Input name="filter" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilter(e?.target?.value)} placeholder="" value={filter} type="text" style={{}}/>
+                  </div>
+
+                  <div className='flex flex-col gap-[.5em] h-[20em]'>
+                    <Text text="Descreva o seu quadro *"/>
+                    <TextArea name="filter" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilter(e?.target?.value)} placeholder="" value={filter}  style={{}}/>
+                  </div>
+
+                  <Button text='Criar Quadro' onClick={()=>{}}/>
+
                     
                 </div>
                 

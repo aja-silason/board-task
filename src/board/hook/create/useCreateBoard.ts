@@ -3,12 +3,13 @@ import { toast } from "sonner";
 import axios from "axios";
 
 type props = {
-    task: string
+    title: string,
+    description: string,
 }
 
-export const useCreateTask = () => {
+export const useCreateBoard = () => {
 
-    const [data, setData] = useState<props>({task: ""});
+    const [data, setData] = useState<props>({title: "", description: ""});
     const [isLoading, setIsLoading] = useState<boolean>();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,10 +28,11 @@ export const useCreateTask = () => {
         try {
 
             const payload: props = {
-                task: data?.task
+                title: data?.title,
+                description: data?.description
             }
 
-            const isValidate: Array<keyof props> = ["task"];
+            const isValidate: Array<keyof props> = ["title", "description"];
             for(const key of isValidate){
                 const value = payload[key];
                 if(value?.trim() == "" || value == undefined || value == null) {
@@ -39,7 +41,7 @@ export const useCreateTask = () => {
                 }
             }
             
-            await axios.post(`${api_url}/tasks`, payload);
+            await axios.post(`${api_url}/titles`, payload);
             toast.success("Tarefa criada com sucesso", {duration: 3000});
 
             setIsLoading(false)

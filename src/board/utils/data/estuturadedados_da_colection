@@ -12,6 +12,7 @@ type board = {
     boardId: string,
     title: string,
     description: string,
+    tag: [],
     participants: [], //users associados
     tasks: [] //tarefas adicionadas no quadro,
     createdAt: Date,
