@@ -1,5 +1,5 @@
 import { Button } from "./components/button/button";
-import { Input } from "./components/input/input";
+import { Input } from "./components/input-data/input";
 
 import logoBoard from "../assets/logo-board.png";
 import { Text } from "./components/text/text";

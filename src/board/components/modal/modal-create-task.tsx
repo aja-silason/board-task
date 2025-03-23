@@ -6,6 +6,7 @@ import Fade from '@mui/material/Fade';
 import { Input } from '../input-data/input';
 import { useCommom } from '../../context/common.context';
 import { Text } from '../text/text';
+import { X } from '@phosphor-icons/react';
 
 const style = {
   position: 'absolute',
@@ -23,7 +24,7 @@ type props = {
     children: React.ReactNode;
 }
 
-export default function SearchModal({children}: props) {
+export default function CreateTaskModal({children}: props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -52,23 +53,23 @@ export default function SearchModal({children}: props) {
       >
         <Fade in={open}>
           <Box sx={style}>
-
-            <div className='mb-4'>
-                <Input name="filter" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilter(e?.target?.value)} placeholder="Pesquisar tarefas" value={filter} type="text" style={{height: "40px"}}/>
+            <div className='flex items-center justify-between mb-[.5em]'>
+              <Text text="Criar Quadro" style={{fontSize: "14pt"}}/>
+              
+              <span className='border rounded-[5em] flex flex-col items-center justify-center p-[.4em]' onClick={handleClose}>
+                <X size={20} className='font-bold cursor-pointer'/>
+              </span>
             </div>
 
             <hr />
 
             <div className='flex flex-col gap-[1em] mt-[1em] h-[90%]'> 
 
-                <Text text={`Pesquisei por: ${filter}`}/>
-                
                 <div className='flex flex-col h-full overflow-auto'>
 
-                    <Text text={`Pesquisei por: ${filter}`}/>
-                    <Text text={`Pesquisei por: ${filter}`}/>
+                  <Text text="Tarefa *"/>
+                  <Input name="filter" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilter(e?.target?.value)} placeholder="" value={filter} type="text" style={{}}/>
                     
-
                 </div>
                 
             </div>

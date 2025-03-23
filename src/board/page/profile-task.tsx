@@ -27,7 +27,7 @@ export function ProfileTask(){
 
                 <InnerTaskContainer>
                     {
-                        isfirst ? <p>Task</p> : isSecond ? <p>Board</p> : isThird && <p>Participants</p> 
+                        isfirst ? (<p>Task</p> ): isSecond ? <p>Board</p> : isThird && <p>Participants</p> 
                     }
                 </InnerTaskContainer>
 

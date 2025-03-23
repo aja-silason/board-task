@@ -1,0 +1,62 @@
+
+type users =  {
+    uid: string,
+    email: string,
+    username: string,
+    authType: string,
+    photoURL: string,
+    createdAt: string
+}[]
+
+type board = {
+    boardId: string,
+    title: string,
+    description: string,
+    participants: [], //users associados
+    tasks: [] //tarefas adicionadas no quadro,
+    createdAt: Date,
+    updatedAt: Date,
+    status: string // open, closed 
+}[]
+
+
+type tasks = {
+    taskId: string,
+    title: string,
+    status: string // pending, development, closed,
+    doing: string, // uid de quem lhe foi atribuido a task,
+    comments: []  //  lista de comentarios
+    createdAt: Date
+}
+
+type comments = {
+    commentsId: string,
+    comment: string,
+    userId: string,
+    taskId: string
+    createdAt: string
+    updatedAt: string
+}
+
+type invites = {
+    inviteId: string,
+    boardId: string,
+    status: string //pending, accepted, declined,
+    createdA: Date,
+    acceptedAt: Date 
+}
+
+type entidade4 = {
+}
+
+type entidade5 = {
+}
+
+type entidade6 = {
+}
+
+type entidade7 = {
+}
+
+type entidade8 = {
+}

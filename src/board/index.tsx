@@ -1,6 +1,6 @@
 import { Button } from "./components/button/button";
 import { SocialMidiaCard } from "./components/card/socialmedia.card";
-import { Input } from "./components/input/input";
+import { Input } from "./components/input-data/input";
 import { FacebookLogo, GithubLogo, GoogleLogo } from "@phosphor-icons/react";
 import logoBoard from "../assets/logo-board.png";
 import { Text } from "./components/text/text";
