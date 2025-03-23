@@ -3,6 +3,7 @@ import { ChangeEvent, FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { auth, facebookProvider, githubProvider, googleProvider } from "../../../firebase.config";
+import { useAuth } from "../../context/auth.context";
 //import {} from ;
 
 type props = {
@@ -16,7 +17,9 @@ export const useLogin = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    const {setUser} = useAuth();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
@@ -55,9 +58,9 @@ export const useLogin = () => {
 
             localStorage?.setItem("userData", JSON.stringify(res?.user));
 
-            navigate("/home", {replace: true});
+            setUser(res.user);
 
-            console.log(res.user);
+            navigate("/home", {replace: true});
 
             setIsLoading(false);
             toast.success("Login efectuado com sucesso", {
@@ -86,9 +89,12 @@ export const useLogin = () => {
             const res = await signInWithPopup(auth, googleProvider);
             const user = res.user;
 
-            console.log("User", user);
+            localStorage?.setItem("userData", JSON.stringify(user));
+
+            setUser(user);
 
             navigate("/home", {replace: true});
+
 
         } catch (error) {
             console.log(error)
@@ -102,9 +108,12 @@ export const useLogin = () => {
             const res = await signInWithPopup(auth, facebookProvider)
             const user = res.user;
             
-            console.log("User gitub", user);
+            localStorage?.setItem("userData", JSON.stringify(user));
+
+            setUser(user);
             
             navigate("/home", {replace: true})
+
             
         } catch (error) {
             console.log(error)
@@ -118,9 +127,12 @@ export const useLogin = () => {
             const res = await signInWithPopup(auth, githubProvider)
             const user = res.user;
 
-            console.log("User gitub", user);
+            localStorage?.setItem("userData", JSON.stringify(user));
+
+            setUser(user);
 
             navigate("/home", {replace: true})
+
 
         } catch (error) {
             console.log(error)

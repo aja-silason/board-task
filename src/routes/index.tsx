@@ -11,6 +11,8 @@ export function RoutesApp() {
 
     const {user} = useAuth();
 
+    console.log("DFGHJK", user)
+
     return (
         <Router>
 

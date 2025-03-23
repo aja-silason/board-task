@@ -3,7 +3,7 @@ import React, { createContext, Dispatch, ReactNode, useContext, useEffect, useSt
 import { auth } from "../../firebase.config";
 
 type AuthProps = {
-    user: any,
+    user: object,
     setUser: Dispatch<React.SetStateAction<any>>;
 }
 
@@ -13,15 +13,11 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
 
     const [user, setUser] = useState<any>(null);
     
-    const userStorage = localStorage.getItem("userData")
-    const parsedUser = userStorage && JSON.parse(userStorage);
-
     useEffect(() => {
-        setUser(parsedUser)
+        
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if(parsedUser){
-            console.log("Aquele", parsedUser, user)
-                setUser(parsedUser);
+            if(user){
+                setUser(user);
                 return;
             }
             setUser(null)

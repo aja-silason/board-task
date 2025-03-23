@@ -6,9 +6,10 @@ import logoBoard from "../assets/logo-board.png";
 import { ThinText } from "./components/text/thintext";
 import { Link, useNavigate } from "react-router-dom";
 import { useLogin } from "./hook/auth/useLogin";
+import { useEffect } from "react";
 
 type props = {
-    user: any
+    user: object
 }
 
 export function LogIn({user}: props){
@@ -19,11 +20,17 @@ export function LogIn({user}: props){
     const navigate = useNavigate();
 
     const {data, handleChange, handleSubmit, handleLoginWithGoogle, handleLoginFacebook, handleLoginGithub} = useLogin();
+    
+    useEffect(() => {
+        
+        if(user){
+            navigate("/home", {replace: true})
+            console.log("USERRRRR", user)
+        }
+    }, [user, navigate])
+        
 
-    if(user){
-        navigate("/home", {replace: false})
-    }
-
+            
     return (
         <div className={`w-full md:h-screen flex flex-col items-center justify-center`}>
             

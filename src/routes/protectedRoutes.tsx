@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 
 type props = {
     children: any,
@@ -7,8 +7,6 @@ type props = {
 
 export const ProtectedRoute = ({children, user}: props) => {
 
-    const navigate = useNavigate();
-
-    return user ? children : navigate("/", {replace: true});
+    return user ? children : <Navigate to="/"></Navigate>;
 
 }

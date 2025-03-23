@@ -3,10 +3,12 @@ import { auth } from "../../firebase.config"
 import { toast } from "sonner"
 import { Button } from "../components/button/button"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/auth.context"
 
 export function Home(){
 
     const navigate = useNavigate();
+    const {setUser} = useAuth();
 
     const handleSigOut = async () => {
         
@@ -14,6 +16,7 @@ export function Home(){
 
             await signOut(auth)
             localStorage.clear();
+            setUser(null);
             navigate("/", {replace: true})
 
         } catch (error) {
