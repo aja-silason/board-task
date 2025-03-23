@@ -5,6 +5,7 @@ import { Container } from "../components/layout/container"
 import { Text } from "../components/text/text";
 import { useToogle } from "../hook/behavior/useToogle";
 import { tasklist } from "../utils/mock/mock";
+import { useInternNavigation } from "../hook/behavior/useNavigation";
 
 export type taskProps = {
     id: number,
@@ -19,6 +20,8 @@ export type taskProps = {
 export function Task(){
 
     const {isfirst, isSecond, handleIsFirst, handleIsSecond} = useToogle();
+
+    const {handleNavigateToProfileTask} = useInternNavigation();
 
 
     return (
@@ -46,7 +49,7 @@ export function Task(){
                                     {
                                         tasklist?.map((task) => {
                                             return (
-                                                <TaskCard key={task?.id} hoverMessage={task?.task_title} onClick={() => alert(`Abriu Tarefa ${task?.id}`)} data={task}/>
+                                                <TaskCard key={task?.id} hoverMessage={task?.task_title} onClick={() => handleNavigateToProfileTask(task?.id)} data={task}/>
                                             )
                                         })
                                     }
