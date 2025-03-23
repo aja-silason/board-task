@@ -1,19 +1,14 @@
-import { useTheme } from "../../context/theme.context"
-
 type props = {
     onClick?: VoidFunction,
     text: string,
-    type?: "button" | "submit" | "reset" | undefined
+    type?: "button" | "submit" | "reset" | undefined,
+    style?: object
 }
 
-export const Button = ({text, type, onClick}: props) => {
-
-    const {theme} = useTheme();
+export const Button = ({text, type, style, onClick}: props) => {
 
     return (
-        <button type={type ?? "button"} onClick={onClick} className={`border p-[.8em] rounded-[.5em]
-            ${theme == "dark" ? 'bg-white' : 'bg-black  text-[#fff]'}
-        `}>{text}</button>
+        <button type={type ?? "button"} onClick={onClick} className={`border p-[.8em] rounded-[.5em] bg-black  text-[#fff]`} style={style}>{text}</button>
 
     )
 }

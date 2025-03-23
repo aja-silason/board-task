@@ -1,15 +1,14 @@
-import { ChangeEvent } from "react";
 import logo from "../../../../assets/logo-board.svg"
-import { useCommom } from "../../../context/common.context"
-import { Input } from "../../input/input"
 import { Notification } from "@phosphor-icons/react";
 import { useAuth } from "../../../context/auth.context";
 import { IconNotification } from "../../card/action-notification.card";
 import { ProfileCard } from "../../card/profile.card";
+import ProfileModal from "../../modal/popover-profile";
+import NotificationModal from "../../modal/popover-notification";
+import SearchModal from "../../modal/modal-search";
 
 export const NavBar = () => {
 
-    const {filter, setFilter} = useCommom();
     const {user} = useAuth();
 
     console.log("User ===", user?.accessToken, user, user);
@@ -29,22 +28,29 @@ export const NavBar = () => {
             </div>
             
             <div className="w-[100%]">
-                <Input name="filter" onChange={(e: ChangeEvent<HTMLInputElement>) => setFilter(e?.target?.value)} placeholder="Pesquisar tarefas" value={filter} type="text" style={{height: "40px"}}/>
+
+                <SearchModal>
+                    <button type="button" className="border border-1 w-full rounded-[5px] p-[.5em] text-start py-[.5em] font-[500]">Pesquisar tarefas</button>
+                </SearchModal>
 
             </div>
             
             <div className="w-[100%] flex justify-end gap-[1em] items-center">
 
-                <IconNotification onClick={() => {}} icon={<Notification size={20} />} hoverMessage="Notificação"/>
+                <NotificationModal>
+                    <IconNotification onClick={() => {}} icon={<Notification size={20} />} hoverMessage="Notificação"/>
+                </NotificationModal>
 
-                <ProfileCard onClick={() => {}} hoverMessage="Perfil">
-                    {
-                        profilePicture ? (
-                            <img src={profilePicture} alt="" className="rounded-[5em]"/> 
-                        ) : <p className="p-[.3em]">{oneLetter?.toUpperCase()}</p>
-                    }
+                <ProfileModal>
+                    <ProfileCard onClick={() => {}} hoverMessage="Perfil">
+                        {
+                            profilePicture ? (
+                                <img src={profilePicture} alt="" className="rounded-[5em]"/> 
+                            ) : <p className="p-[.3em] font-[800]">{oneLetter?.toUpperCase()}</p>
+                        }
+                    </ProfileCard>
+                </ProfileModal>
 
-                </ProfileCard>
             </div>
 
         </div>

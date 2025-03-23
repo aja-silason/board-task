@@ -19,6 +19,7 @@ export function RoutesApp() {
                 <Route path="/" element={<LogIn user={user}/>} />
 
                 <Route path="/home" element={<ProtectedRoute user={user}><Home/></ProtectedRoute>} />
+                <Route path="/homea" element={<ProtectedRoute user={user}><Home/></ProtectedRoute>} />
                 
                 {/*<Route path="/drag" element={<DragAndDropApp/>} />*/}
                 <Route path="/register" element={<Register/>} />

@@ -12,7 +12,7 @@ export const Container = ({children}: props) => {
             <NavBar/>
             <div className="flex gap-[1em]">
                 <SideBar/>
-                <div>
+                <div className="p-[1em]">
                     {children}
                 </div>
             </div>
