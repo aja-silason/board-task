@@ -5,7 +5,7 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import { Input } from '../input/input';
 import { useCommom } from '../../context/common.context';
-import { ThinText } from '../text/thintext';
+import { Text } from '../text/text';
 
 const style = {
   position: 'absolute',
@@ -61,12 +61,12 @@ export default function SearchModal({children}: props) {
 
             <div className='flex flex-col gap-[1em] mt-[1em] h-[90%]'> 
 
-                <ThinText text={`Pesquisei por: ${filter}`}/>
+                <Text text={`Pesquisei por: ${filter}`}/>
                 
                 <div className='flex flex-col h-full overflow-auto'>
 
-                    <ThinText text={`Pesquisei por: ${filter}`}/>
-                    <ThinText text={`Pesquisei por: ${filter}`}/>
+                    <Text text={`Pesquisei por: ${filter}`}/>
+                    <Text text={`Pesquisei por: ${filter}`}/>
                     
 
                 </div>

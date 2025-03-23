@@ -17,7 +17,7 @@ export const SideBar = () => {
     const location = useLocation();
 
     return (
-        <div className="border w-[15%] md:h-[92vh] px-[.4em] pt-[1em] flex flex-col gap-[.5em]">
+        <div className="border w-[15%] md:h-[92vh] px-[.4em] pt-[1em] flex flex-col gap-[.5em] bg-white">
             
             {
                 menu?.map((menu: menuProps) => {

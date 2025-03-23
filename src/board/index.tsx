@@ -3,7 +3,7 @@ import { SocialMidiaCard } from "./components/card/socialmedia.card";
 import { Input } from "./components/input/input";
 import { FacebookLogo, GithubLogo, GoogleLogo } from "@phosphor-icons/react";
 import logoBoard from "../assets/logo-board.png";
-import { ThinText } from "./components/text/thintext";
+import { Text } from "./components/text/text";
 import { Link, useNavigate } from "react-router-dom";
 import { useLogin } from "./hook/auth/useLogin";
 import { useEffect } from "react";
@@ -45,8 +45,8 @@ export function LogIn({user}: props){
                 <div className="flex flex-col text-center mb-[1em]">
                     <img src={logoBoard} alt="Logo Board" className="w-[18em]"/>
 
-                    <ThinText text="Entre"/>
-                    <ThinText text="Gerencia as suas tarefas no quadro"/>
+                    <Text text="Entre"/>
+                    <Text text="Gerencia as suas tarefas no quadro"/>
 
                 </div>
 
@@ -59,7 +59,7 @@ export function LogIn({user}: props){
                         <Button text="Entrar" type="submit"/>
 
                         <div className="flex flex-col gap-[.7em]">
-                            <ThinText text="Entrar com" center/>
+                            <Text text="Entrar com" center/>
                             
                             <SocialMidiaCard social_midia_logo={<GoogleLogo size={25}/>} text="Google" onClick={handleLoginWithGoogle}/>
 
@@ -68,7 +68,7 @@ export function LogIn({user}: props){
                             <SocialMidiaCard social_midia_logo={<GithubLogo size={25}/>} text="GitHub" onClick={handleLoginGithub}/>
                         </div>
 
-                        <Link to={'/register'}><ThinText text="Não possui conta? Criar conta" end/></Link>
+                        <Link to={'/register'}><Text text="Não possui conta? Criar conta" end/></Link>
 
                         <p className="text-[11pt] text-[gray] font-[400] text-center">{year} @ todos os direitos reservados a STETMENT MC</p>
 

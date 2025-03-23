@@ -2,7 +2,7 @@ import { Button } from "./components/button/button";
 import { Input } from "./components/input/input";
 
 import logoBoard from "../assets/logo-board.png";
-import { ThinText } from "./components/text/thintext";
+import { Text } from "./components/text/text";
 import { Link } from "react-router-dom";
 import { useCreateAccount } from "./hook/auth/useCreateAccount";
 
@@ -36,7 +36,7 @@ export function Register(){
                         
                         <Button text="Criar conta" type="submit" />
 
-                        <Link to={"/"}><ThinText text="Tenho uma conta. Logar"/></Link>
+                        <Link to={"/"}><Text text="Tenho uma conta. Logar"/></Link>
 
                         <p className="text-[11pt] text-[gray] font-[400] text-center">{year} @ todos os direitos reservados a STETMENT MC</p>
 

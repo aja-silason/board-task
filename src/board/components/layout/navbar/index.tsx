@@ -11,17 +11,11 @@ export const NavBar = () => {
 
     const {user} = useAuth();
 
-    console.log("User ===", user?.accessToken, user, user);
-
-    const username = user?.displayName ?? user?.email;
-
     const profilePicture = user?.photoURL;
     const oneLetter = user?.email?.split('')[0];
 
-    console.log("Username", username, username, oneLetter);
-
     return (
-        <div className="w-full border flex justify-between py-[.5em] px-[.5em] items-center">
+        <div className="w-full border flex justify-between py-[.5em] px-[.5em] items-center bg-white">
             
             <div className="w-[100%]">
                 <img src={logo} alt="" className="w-[8em]"/>
