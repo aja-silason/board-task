@@ -77,7 +77,7 @@ export function Task(){
                                 {
                                         tasklist?.map((task) => {
                                             return (
-                                                <TaskList key={task?.id} hoverMessage={task?.task_title} onClick={() => alert(`Abriu Tarefa ${task?.id}`)} data={task}/>
+                                                <TaskList key={task?.id} hoverMessage={task?.task_title} onClick={() => handleNavigateToProfileTask(task?.id)} data={task}/>
                                             )
                                         })
                                     }

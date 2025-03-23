@@ -2,6 +2,7 @@ import { TaskList } from "../components/card/task-list.card";
 import { TaskCard } from "../components/card/task.card";
 import { Container } from "../components/layout/container"
 import { Text } from "../components/text/text";
+import { useInternNavigation } from "../hook/behavior/useNavigation";
 import { tasklist } from "../utils/mock/mock";
 import { removeNameIntoEmail } from "../utils/removeNameIntoTheEmail";
 
@@ -22,6 +23,8 @@ export function Home(){
 
     const name = removeNameIntoEmail(userData?.email);
 
+    const {handleNavigateToProfileTask} = useInternNavigation();
+
     //console.log("User Data Index Page", parsedUserData?.providerData[0]);
 
     return (
@@ -39,7 +42,7 @@ export function Home(){
                         {
                             tasklist?.slice(0,5)?.map((task) => {
                                 return (
-                                    <TaskCard key={task?.id} hoverMessage={task?.task_title} onClick={() => alert(`Abriu Tarefa ${task?.id}`)} data={task}/>
+                                    <TaskCard key={task?.id} hoverMessage={task?.task_title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
                                 )
                             })
                         }
