@@ -28,8 +28,8 @@ export const SideBar = () => {
 
                         <nav>
                             <Link to={menu?.to}>
-                                <li className={`flex ${isActive ? 'bg-[#000]' : 'bg-white text-[#444]'} text-white p-[.5em] font-[600] rounded-[.3em] gap-[.5em]`}>
-                                    <div className="w-[.2em] rounded-[.5em] bg-[#fff]"></div>
+                                <li className={`flex ${isActive ? 'bg-[#000] text-white' : 'bg-white text-[#444]'}  p-[.5em] font-[600] rounded-[.3em] gap-[.5em]`}>
+                                    <div className={`w-[.2em] rounded-[.5em] ${isActive && 'bg-[#fff]'}`}></div>
                                     <div className="flex gap-[.3em] items-center">
                                         {menu?.icon}
                                         <p className="">{menu?.menutext}</p>

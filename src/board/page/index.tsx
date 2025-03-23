@@ -37,7 +37,7 @@ export function Home(){
                     
                     <div className="flex justify-between">
                         <Text text="Suas tarefas" style={{fontWeight: 600}}/>
-                        <CreateTaskModal children={<Button text="Criar Tarefa"/>}/>
+                        <CreateTaskModal children={<Button text="Novo Quadro"/>}/>
                     </div>
 
                     <div className=" flex gap-[1.5em] w-full flex-wrap h-[30em] overflow-auto">

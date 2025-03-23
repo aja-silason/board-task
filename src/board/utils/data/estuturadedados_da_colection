@@ -5,12 +5,14 @@ type users =  {
     username: string,
     authType: string,
     photoURL: string,
+    tasks: [],
     createdAt: string
 }[]
 
 type board = {
     boardId: string,
     title: string,
+    ownerId: string,
     description: string,
     tag: [],
     participants: [], //users associados
@@ -42,6 +44,7 @@ type comments = {
 type invites = {
     inviteId: string,
     boardId: string,
+    userId: string // quem receberá o convite
     status: string //pending, accepted, declined,
     createdA: Date,
     acceptedAt: Date 

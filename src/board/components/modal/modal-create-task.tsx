@@ -4,11 +4,11 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import { Input } from '../input-data/input';
-import { useCommom } from '../../context/common.context';
 import { Text } from '../text/text';
 import { X } from '@phosphor-icons/react';
 import { TextArea } from '../input-data/textarea';
 import { Button } from '../button/button';
+import { useCreateBoard } from '../../hook/create/useCreateBoard';
 
 const style = {
   position: 'absolute',
@@ -30,7 +30,7 @@ export default function CreateTaskModal({children}: props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const {filter, setFilter} = useCommom();
+  const {data, handleChange, handleSubmit, isLoading} = useCreateBoard();
 
   return (
     <div>
@@ -66,22 +66,26 @@ export default function CreateTaskModal({children}: props) {
 
             <div className='flex flex-col gap-[1em] mt-[1em] h-[90%]'> 
 
+              <form onSubmit={handleSubmit}>
+
                 <div className='flex flex-col h-full gap-[1em] overflow-auto'>
 
                   <div className='flex flex-col gap-[.5em]'>
                     <Text text="Tarefa *"/>
-                    <Input name="filter" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilter(e?.target?.value)} placeholder="" value={filter} type="text" style={{}}/>
+                    <Input name="title" onChange={handleChange} placeholder="" value={data?.title} type="text" style={{}}/>
                   </div>
 
                   <div className='flex flex-col gap-[.5em] h-[20em]'>
                     <Text text="Descreva o seu quadro *"/>
-                    <TextArea name="filter" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilter(e?.target?.value)} placeholder="" value={filter}  style={{}}/>
+                    <TextArea name="description" onChange={handleChange} placeholder="" value={data?.description}  style={{}}/>
                   </div>
 
-                  <Button text='Criar Quadro' onClick={()=>{}}/>
+                  <Button text='Criar Quadro' type='submit' isLoading={isLoading}/>
 
                     
                 </div>
+
+              </form>
                 
             </div>
           </Box>

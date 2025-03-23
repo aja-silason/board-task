@@ -1,35 +1,56 @@
 import { ChangeEvent, FormEvent, useState } from "react"
 import { toast } from "sonner";
-import axios from "axios";
+import { db } from "../../../firebase.config";
+import { doc, setDoc } from "firebase/firestore";
 
 type props = {
+    boardId?: string,
     title: string,
     description: string,
+    ownerId?: string,
+    tag: string[],
+    participants: string[],
+    tasks: string[],
+    createdAt: any,
+    updatedAt: any,
+    status: string
 }
 
 export const useCreateBoard = () => {
 
-    const [data, setData] = useState<props>({title: "", description: ""});
+    const [data, setData] = useState<props>({title: "", description: "", participants: [], status: "", tasks: [], boardId: "", ownerId: "", tag: [], updatedAt: "", createdAt: ""});
     const [isLoading, setIsLoading] = useState<boolean>();
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value} = e?.target;
         setData((prevState) => ({
             ...prevState, [name]: value
         }));
     }
 
-    const api_url = import.meta.env.VITE_FB_DATABASE_URL;
+    //const api_url = import.meta.env.VITE_FB_DATABASE_URL;
+
+    const user = localStorage.getItem("userData");
+    const parsedData = user && JSON.parse(user);
 
     const handleSubmit = async (e: FormEvent) => {
         e?.preventDefault();
 
+        setIsLoading(true)
 
         try {
 
             const payload: props = {
+                boardId: crypto?.randomUUID(),
                 title: data?.title,
-                description: data?.description
+                description: data?.description,
+                ownerId: parsedData?.uid,
+                participants: [parsedData?.uid],
+                status: 'open',
+                tag: ['Quadro'],
+                tasks: [],
+                updatedAt: new Date(),
+                createdAt: new Date(),
             }
 
             const isValidate: Array<keyof props> = ["title", "description"];
@@ -40,8 +61,21 @@ export const useCreateBoard = () => {
                     return;
                 }
             }
+
+            /*const options = {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload)
+            }*/
             
-            await axios.post(`${api_url}/titles`, payload);
+            //const res = await axios.post(`${api_url}titles.json`, payload);
+
+            const board_store_fs = doc(db, 'boards', parsedData?.uid);
+
+            await setDoc(board_store_fs, payload);
+
             toast.success("Tarefa criada com sucesso", {duration: 3000});
 
             setIsLoading(false)
