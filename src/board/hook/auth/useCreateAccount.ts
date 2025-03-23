@@ -3,6 +3,7 @@ import { ChangeEvent, FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { auth } from "../../../firebase.config";
+import { useAuth } from "../../context/auth.context";
 
 type props = {
     email: string,
@@ -14,7 +15,9 @@ export const useCreateAccount = () => {
     const [data, setData] = useState<props>({email: "", password: ""});
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    const {setUser} = useAuth();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
@@ -54,21 +57,15 @@ export const useCreateAccount = () => {
                 }
             }
 
-            createUserWithEmailAndPassword(auth, payload?.email, payload?.password).then((userCredential) => {
-                const user = userCredential.user;
-                console.log(user);
-            }).catch((error) => {
-                const errorCode = error?.code;
-                const errorMessage = error?.message;
-                console.log(errorCode, errorMessage)
-            })
+            const result = await createUserWithEmailAndPassword(auth, payload?.email, payload?.password);
 
+            const user = result?.user
             
-            console.log("DATA", payload);
-            
-            localStorage.setItem("userdata", JSON.stringify(payload));
+            localStorage?.setItem("userData", JSON.stringify(user));
 
-            navigate('/', { replace: true }); 
+            setUser(user);
+
+            navigate('/home', { replace: true }); 
 
             setIsLoading(false);
             toast.success("Conta criada com sucesso", {
@@ -76,7 +73,17 @@ export const useCreateAccount = () => {
             })
 
 
-        } catch (error) {
+        } catch (error: any) {
+
+            console.log(error.message)
+
+            if(error?.message?.includes("auth/email-already-in-use")){
+                toast.warning("Este e-mail não está disponível, tente outro", {
+                    duration: 3000
+                });    
+                return;
+            }
+
             toast.warning("Algo ocorreu mal. Estamos resolvendo por você", {
                 duration: 3000
             });

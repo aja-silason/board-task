@@ -42,7 +42,7 @@ export function Register(){
                         
                         </div>
                         
-                        <Button text="Entrar" type="submit" />
+                        <Button text="Criar conta" type="submit" />
 
                         <Link to={"/"}><ThinText text="Tenho uma conta. Logar"/></Link>
 
