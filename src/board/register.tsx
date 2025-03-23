@@ -30,6 +30,8 @@ export function Register(){
 
                             <Input placeholder="Insira seu email" type="email" value={data?.email} onChange={handleChange} name="email" required/>
                             
+                            <Input placeholder="Insira o seu Username" type="text" value={data?.username} onChange={handleChange} name="username" required/>
+                            
                             <Input placeholder="Insira a sua password" type="text" value={data?.password} onChange={handleChange} name="password" required/>
                         
                         </div>

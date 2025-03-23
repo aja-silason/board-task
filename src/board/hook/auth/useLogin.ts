@@ -2,8 +2,9 @@ import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { ChangeEvent, FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { auth, facebookProvider, githubProvider, googleProvider } from "../../../firebase.config";
+import { auth, db, facebookProvider, githubProvider, googleProvider } from "../../../firebase.config";
 import { useAuth } from "../../context/auth.context";
+import { doc, setDoc } from "firebase/firestore";
 //import {} from ;
 
 type props = {
@@ -91,10 +92,20 @@ export const useLogin = () => {
 
             localStorage?.setItem("userData", JSON.stringify(user));
 
+            const user_store_fs =  doc(db, 'users', user?.uid);
+                        
+            await setDoc(user_store_fs, {
+                uid: user?.uid,
+                email: user?.email,
+                username: user?.displayName,
+                authType: 'google',
+                photoURL: user?.photoURL ?? null,
+                createdAt: new Date(),
+            });
+
             setUser(user);
 
             navigate("/home", {replace: true});
-
 
         } catch (error) {
             console.log(error)
@@ -109,6 +120,17 @@ export const useLogin = () => {
             const user = res.user;
             
             localStorage?.setItem("userData", JSON.stringify(user));
+
+            const user_store_fs =  doc(db, 'users', user?.uid);
+                        
+            await setDoc(user_store_fs, {
+                uid: user?.uid,
+                email: user?.email,
+                username: user?.displayName,
+                authType: 'facebook',
+                photoURL: user?.photoURL ?? null,
+                createdAt: new Date(),
+            });
 
             setUser(user);
             
@@ -128,6 +150,17 @@ export const useLogin = () => {
             const user = res.user;
 
             localStorage?.setItem("userData", JSON.stringify(user));
+
+            const user_store_fs =  doc(db, 'users', user?.uid);
+                        
+            await setDoc(user_store_fs, {
+                uid: user?.uid,
+                email: user?.email,
+                username: user?.displayName,
+                authType: 'github',
+                photoURL: user?.photoURL ?? null,
+                createdAt: new Date(),
+            });
 
             setUser(user);
 

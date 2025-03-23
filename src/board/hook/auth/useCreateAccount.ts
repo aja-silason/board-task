@@ -2,17 +2,19 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ChangeEvent, FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { auth } from "../../../firebase.config";
+import { auth, db } from "../../../firebase.config";
 import { useAuth } from "../../context/auth.context";
+import { doc, setDoc } from "firebase/firestore";
 
 type props = {
     email: string,
-    password: string
+    password: string,
+    username: string,
 }
 
 export const useCreateAccount = () => {
 
-    const [data, setData] = useState<props>({email: "", password: ""});
+    const [data, setData] = useState<props>({email: "", password: "", username: ""});
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const navigate = useNavigate();
@@ -38,10 +40,11 @@ export const useCreateAccount = () => {
             
             const payload: props = {
                 email: data?.email,
-                password: data?.password
+                password: data?.password,
+                username: data?.username
             }
 
-            const isValidate: Array<keyof props> = ["email", "password"];
+            const isValidate: Array<keyof props> = ["email", "password", "username"];
             for(const key of isValidate){
                 const value = payload[key];
                 if(value == undefined || value == null || value?.trim() == ""){
@@ -59,7 +62,18 @@ export const useCreateAccount = () => {
 
             const result = await createUserWithEmailAndPassword(auth, payload?.email, payload?.password);
 
-            const user = result?.user
+            const user: any = result?.user
+
+            const user_store_fs =  doc(db, 'users', user?.uid);
+            
+            await setDoc(user_store_fs, {
+                uid: user?.uid,
+                email: user?.email,
+                username: data?.username,
+                authType: 'email',
+                createdAt: new Date(),
+            });
+
             
             localStorage?.setItem("userData", JSON.stringify(user));
 
@@ -75,7 +89,7 @@ export const useCreateAccount = () => {
 
         } catch (error: any) {
 
-            console.log(error.message)
+            console.log(error)
 
             if(error?.message?.includes("auth/email-already-in-use")){
                 toast.warning("Este e-mail não está disponível, tente outro", {

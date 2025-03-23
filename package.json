@@ -10,13 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@phosphor-icons/react": "^2.1.7",
-    "@react-firebase/auth": "^0.2.10",
-    "@tailwindcss/postcss": "^4.0.15",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.4.0",
     "@mui/x-data-grid": "^7.24.0",
+    "@phosphor-icons/react": "^2.1.7",
+    "@react-firebase/auth": "^0.2.10",
+    "@tailwindcss/postcss": "^4.0.15",
     "axios": "^1.8.4",
     "crypto-js": "^4.2.0",
     "firebase": "^11.5.0",
