@@ -4,13 +4,14 @@ import { InnerTaskSideBar } from "./sidebar/inner-sidebarr";
 
 type props = {
     children: ReactNode;
+    name_task?: string,
 }
 
-export const InnerTaskContainer = ({children}: props) => {
+export const InnerTaskContainer = ({children ,name_task}: props) => {
     return (
         <div className="flex flex-col gap-[1em]">
 
-            <Text text="Nome da Tarefa" style={{fontSize: "14pt", fontWeight: "700"}}/>
+            <Text text={name_task ?? "Nome da Tarefa"} style={{fontSize: "14pt", fontWeight: "700"}}/>
             
             <div className="flex gap-[1em] bg-white">
                 <InnerTaskSideBar/>

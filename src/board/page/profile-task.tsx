@@ -1,6 +1,8 @@
+import { useParams } from "react-router-dom";
 import { Container } from "../components/layout/container"
 import { InnerTaskContainer } from "../components/layout/inner-task-container";
 import { useCommom } from "../context/common.context";
+import { useGetData } from "../hook/get/useGetData";
 
 export type taskProps = {
     id: number,
@@ -12,6 +14,8 @@ export type taskProps = {
 
 export function ProfileTask(){
 
+    const id = useParams();
+
     {/*
     const storageUserData = localStorage?.getItem("userData");
     const parsedUserData = storageUserData && JSON.parse(storageUserData);
@@ -20,12 +24,18 @@ export function ProfileTask(){
 
     const {isfirst, isSecond, isThird} = useCommom();
 
+    const {data} = useGetData("boards");
+
+    const filterTask: any = data?.filter((task) => task?.boardId?.includes(id))
+
+    console.log("Task", filterTask, data)
+
     return (
         <Container>
 
             <div className="flex flex-col gap-[1em] w-full px-[4em]">
 
-                <InnerTaskContainer>
+                <InnerTaskContainer name_task={filterTask?.title}>
                     {
                         isfirst ? (<p>Task</p> ): isSecond ? <p>Board</p> : isThird && <p>Participants</p> 
                     }

@@ -5,13 +5,14 @@ import { Container } from "../components/layout/container"
 import CreateTaskModal from "../components/modal/modal-create-task";
 import { Text } from "../components/text/text";
 import { useInternNavigation } from "../hook/behavior/useNavigation";
+import { useGetData } from "../hook/get/useGetData";
 import { tasklist } from "../utils/mock/mock";
 import { removeNameIntoEmail } from "../utils/removeNameIntoTheEmail";
 
 export type taskProps = {
     id: number,
     user_name: string,
-    task_title: string,
+    title: string,
     description: string,
     status: string
 }
@@ -26,6 +27,10 @@ export function Home(){
     const name = removeNameIntoEmail(userData?.email);
 
     const {handleNavigateToProfileTask} = useInternNavigation();
+
+    const {data} = useGetData("boards");
+
+    console.log("that i make part", data?.map((item) => item?.participants)[0], userData);
 
     return (
         <Container>
@@ -43,11 +48,13 @@ export function Home(){
                     <div className=" flex gap-[1.5em] w-full flex-wrap h-[30em] overflow-auto">
 
                         {
-                            tasklist?.slice(0,5)?.map((task) => {
+                           data?.map((task: any) => {
                                 return (
-                                    <TaskCard key={task?.id} hoverMessage={task?.task_title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
+                                    <TaskCard key={task?.boardId} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.boardId) } data={task}/>
                                 )
-                            })
+                            })[0]
+
+
                         }
 
 
@@ -66,9 +73,9 @@ export function Home(){
 
 
                         {
-                            tasklist?.slice(0,2)?.map((task) => {
+                            data?.slice(0,2)?.map((task) => {
                                 return (
-                                    <TaskList key={task?.id} hoverMessage={task?.task_title} onClick={() => alert(`Abriu Tarefa ${task?.id}`)} data={task}/>
+                                    <TaskList key={task?.id} hoverMessage={task?.title} onClick={() => alert(`Abriu Tarefa ${task?.id}`)} data={task}/>
                                 )
                             })
                         }

@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react"
 import { toast } from "sonner";
 import { db } from "../../../firebase.config";
-import { doc, setDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 
 type props = {
     boardId?: string,
@@ -72,9 +72,11 @@ export const useCreateBoard = () => {
             
             //const res = await axios.post(`${api_url}titles.json`, payload);
 
-            const board_store_fs = doc(db, 'boards', parsedData?.uid);
+            const board_store_fs = collection(db, 'boards');
+            //const board_store_fs = doc(db, 'boards', parsedData?.uid);
 
-            await setDoc(board_store_fs, payload);
+            await addDoc(board_store_fs, payload);
+            //await setDoc(board_store_fs, payload);
 
             toast.success("Tarefa criada com sucesso", {duration: 3000});
 

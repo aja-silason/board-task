@@ -10,11 +10,11 @@ type props = {
 
 export const TaskList = ({data, hoverMessage, onClick}: props) => {
 
-    const centerLetter = data?.task_title?.split('')[0];
+    const centerLetter = data?.title?.split('')[0];
 
-    const title = shortText(data?.task_title, 40);
+    const title = shortText(data?.title, 20);
 
-    const description = shortText(data?.description, 50);
+    const description = shortText(data?.description, 10);
 
     return (
         <button title={hoverMessage} type="button" className={`flex items-center justify-center border border-[#eee] p-[.4em] gap-[1em] h-[4em] w-full rounded-[.5em] hover:shadow-lg transition`} onClick={onClick}>
@@ -27,7 +27,7 @@ export const TaskList = ({data, hoverMessage, onClick}: props) => {
                     </div>
 
                     <div className="flex flex-col items-start">
-                        <Text text={title}/>
+                        <Text text={title ?? "sss"}/>
                         <Text text={description} style={{fontSize: "11pt"}} color="gray"/>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ export const TaskList = ({data, hoverMessage, onClick}: props) => {
                 </div>
                 
                 <div className="flex flex-col items-end justify-center w-[50%]">
-                    <Text text={data?.user_name} style={{fontSize: "11pt"}} color="gray"/>
+                    <Text text={"Sem informação"} style={{fontSize: "11pt"}} color="gray"/>
                 </div>
 
             </div>

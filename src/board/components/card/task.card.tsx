@@ -10,9 +10,9 @@ type props = {
 
 export const TaskCard = ({data, hoverMessage, onClick}: props) => {
 
-    const centerLetter = data?.task_title?.split('')[0];
+    const centerLetter = data?.title?.split('')[0];
 
-    const title = shortText(data?.task_title, 40);
+    const title = shortText(data?.title, 40);
 
     return (
         <button title={hoverMessage} type="button" className={`flex items-center justify-center border border-[#eee] p-[.4em] gap-[1em] h-[14em] w-[14em] rounded-[.5em] hover:shadow-lg transition`} onClick={onClick}>
