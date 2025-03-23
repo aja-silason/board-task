@@ -1,6 +1,6 @@
 import { Button } from "./components/button/button";
 import { SocialMidiaCard } from "./components/card/socialmedia.card";
-import { LoginInput } from "./components/input/login.input";
+import { Input } from "./components/input/input";
 import { FacebookLogo, GithubLogo, GoogleLogo } from "@phosphor-icons/react";
 import logoBoard from "../assets/logo-board.png";
 import { ThinText } from "./components/text/thintext";
@@ -25,7 +25,6 @@ export function LogIn({user}: props){
         
         if(user){
             navigate("/home", {replace: true})
-            console.log("USERRRRR", user)
         }
     }, [user, navigate])
         
@@ -53,8 +52,8 @@ export function LogIn({user}: props){
 
                 <div className="flex flex-col w-full">
                     <form onSubmit={handleSubmit} className="w-full flex flex-col gap-[2em]">
-                        <LoginInput value={data?.email} name="email" onChange={handleChange} placeholder="Insira seu email" type="email" required/>
-                        <LoginInput placeholder="Sua password" type="password" value={data?.password} name="password" onChange={handleChange} required/>
+                        <Input value={data?.email} name="email" onChange={handleChange} placeholder="Insira seu email" type="email" required/>
+                        <Input placeholder="Sua password" type="password" value={data?.password} name="password" onChange={handleChange} required/>
 
 
                         <Button text="Entrar" type="submit"/>

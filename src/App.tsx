@@ -1,13 +1,16 @@
 import { AuthProvider } from './board/context/auth.context'
+import { CommomProvider } from './board/context/common.context'
 import { ThemeProvider } from './board/context/theme.context'
 import { RoutesApp } from './routes'
 
 function App() {
   return (
     <AuthProvider>
-      <ThemeProvider>
-        <RoutesApp/>
-      </ThemeProvider>
+      <CommomProvider>
+        <ThemeProvider>
+          <RoutesApp/>
+        </ThemeProvider>
+      </CommomProvider>
     </AuthProvider>
   )
 }

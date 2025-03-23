@@ -3,7 +3,7 @@ import React, { createContext, Dispatch, ReactNode, useContext, useEffect, useSt
 import { auth } from "../../firebase.config";
 
 type AuthProps = {
-    user: object,
+    user: any,
     setUser: Dispatch<React.SetStateAction<any>>;
 }
 

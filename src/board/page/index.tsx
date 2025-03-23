@@ -1,9 +1,11 @@
 import { signOut } from "firebase/auth"
 import { auth } from "../../firebase.config"
 import { toast } from "sonner"
-import { Button } from "../components/button/button"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/auth.context"
+import { Container } from "../components/layout/conatiner"
+import { useCommom } from "../context/common.context"
+import { Button } from "../components/button/button"
 
 export function Home(){
 
@@ -25,15 +27,19 @@ export function Home(){
         }
     }
 
+    const {filter} = useCommom();
 
     return (
-        <div>
+        <Container>
+            <p>Home Screen {filter}</p>
+            {/*<div>
 
-            Manager Home
+                Manager Home
 
-            <Button text="Terminar Sessão" onClick={handleSigOut}/>
-
-        </div>
+                
+                </div>*/}
+                <Button text="Terminar Sessão" onClick={handleSigOut}/>
+        </Container>
     )
 
 }
