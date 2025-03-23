@@ -4,28 +4,12 @@ import { NotFound } from "../board/NotFound.screen";
 import { Register } from "../board/register";
 import { Home } from "../board/page";
 import DragAndDropApp from "../board/page/drag";
-import { onAuthStateChanged } from "firebase/auth";
-import { useEffect } from "react";
-import { auth } from "../firebase.config";
 import { useAuth } from "../board/context/auth.context";
 import { ProtectedRoute } from "./protectedRoutes";
 
 export function RoutesApp() {
 
-    const {user, setUser} = useAuth();
-
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if(user){
-                setUser(user);
-                return;
-            }
-            setUser(null)
-        });
-
-        return () => unsubscribe();
-
-    }, [])
+    const {user} = useAuth();
 
     return (
         <Router>

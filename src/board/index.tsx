@@ -4,7 +4,7 @@ import { LoginInput } from "./components/input/login.input";
 import { FacebookLogo, GithubLogo, GoogleLogo } from "@phosphor-icons/react";
 import logoBoard from "../assets/logo-board.png";
 import { ThinText } from "./components/text/thintext";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLogin } from "./hook/auth/useLogin";
 
 type props = {
@@ -16,10 +16,12 @@ export function LogIn({user}: props){
     const time = new Date();
     const year = time?.getFullYear();
 
+    const navigate = useNavigate();
+
     const {data, handleChange, handleSubmit, handleLoginWithGoogle, handleLoginFacebook, handleLoginGithub} = useLogin();
 
     if(user){
-        <Navigate to="/home"></Navigate>
+        navigate("/home", {replace: false})
     }
 
     return (

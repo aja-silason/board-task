@@ -1,15 +1,15 @@
-import { ReactNode } from "react"
-import { Navigate } from "react-router-dom"
+import React, { ReactNode } from "react"
+import { Navigate, useNavigate } from "react-router-dom"
 
 type props = {
-    children: ReactNode,
-    user: any
+    children: any,
+    user: object
 }
 
 export const ProtectedRoute = ({children, user}: props) => {
 
-    console.log(user)
+    const navigate = useNavigate();
 
-    return user ? children : <Navigate to={"/"} ></Navigate>
+    return user ? children : navigate("/", {replace: true});
 
 }
