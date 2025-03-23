@@ -6,7 +6,6 @@ import CreateTaskModal from "../components/modal/modal-create-task";
 import { Text } from "../components/text/text";
 import { useInternNavigation } from "../hook/behavior/useNavigation";
 import { useGetData } from "../hook/get/useGetData";
-import { tasklist } from "../utils/mock/mock";
 import { removeNameIntoEmail } from "../utils/removeNameIntoTheEmail";
 
 export type taskProps = {
@@ -30,7 +29,7 @@ export function Home(){
 
     const {data} = useGetData("boards");
 
-    console.log("that i make part", data?.map((item) => item?.participants)[0], userData);
+    console.log("that i make part", data?.map((item) => item?.participants)[0],data);
 
     return (
         <Container>
@@ -52,7 +51,7 @@ export function Home(){
                                 return (
                                     <TaskCard key={task?.boardId} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.boardId) } data={task}/>
                                 )
-                            })[0]
+                            })
 
 
                         }
