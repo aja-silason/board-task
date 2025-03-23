@@ -1,4 +1,4 @@
-import { BuildingOffice, Table } from "@phosphor-icons/react"
+import { BuildingOffice } from "@phosphor-icons/react"
 import { ReactNode } from "react"
 import { Link, useLocation } from "react-router-dom"
 
@@ -12,7 +12,6 @@ export const SideBar = () => {
     const menu: menuProps[] = [
         {to: "/home", icon: <BuildingOffice size={20}/>, menutext: "Início"},
         {to: "/tasks", icon: <BuildingOffice size={20}/>, menutext: "Tarefas"},
-        {to: "/board", icon: <Table size={20}/>, menutext: "Quadro"},
     ] 
 
     const location = useLocation();

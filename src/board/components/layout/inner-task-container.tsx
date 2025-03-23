@@ -1,5 +1,4 @@
 import { ReactNode } from "react"
-import { SideBar } from "./sidebar";
 import { Text } from "../text/text";
 import { InnerTaskSideBar } from "./sidebar/inner-sidebarr";
 

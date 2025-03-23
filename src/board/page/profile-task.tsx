@@ -1,9 +1,6 @@
-import { TaskCard } from "../components/card/task.card";
 import { Container } from "../components/layout/container"
 import { InnerTaskContainer } from "../components/layout/inner-task-container";
-import { Text } from "../components/text/text";
-import { tasklist } from "../utils/mock/mock";
-import { removeNameIntoEmail } from "../utils/removeNameIntoTheEmail";
+import { useCommom } from "../context/common.context";
 
 export type taskProps = {
     id: number,
@@ -15,12 +12,13 @@ export type taskProps = {
 
 export function ProfileTask(){
 
+    {/*
     const storageUserData = localStorage?.getItem("userData");
     const parsedUserData = storageUserData && JSON.parse(storageUserData);
 
-    const userData = parsedUserData?.providerData[0];
+    const userData = parsedUserData?.providerData[0];*/}
 
-    const name = removeNameIntoEmail(userData?.email);
+    const {isfirst, isSecond, isThird} = useCommom();
 
     return (
         <Container>
@@ -28,34 +26,12 @@ export function ProfileTask(){
             <div className="flex flex-col gap-[1em] w-full px-[4em]">
 
                 <InnerTaskContainer>
-
-                    <p>Inner</p>
-
+                    {
+                        isfirst ? <p>Task</p> : isSecond ? <p>Board</p> : isThird && <p>Participants</p> 
+                    }
                 </InnerTaskContainer>
 
-                {/*<Text text={`Saudações, ${name}`} style={{fontSize: "18pt", fontWeight: 600}} />
-
-                <div className="flex flex-col gap-[1em]">
-                    
-                    <Text text="Suas tarefas" style={{fontWeight: 600}}/>
-
-                    <div className=" flex gap-[1.5em] w-full flex-wrap h-[30em] overflow-auto">
-
-                        {
-                            tasklist?.slice(0,5)?.map((task) => {
-                                return (
-                                    <TaskCard key={task?.id} hoverMessage={task?.task_title} onClick={() => alert(`Abriu Tarefa ${task?.id}`)} data={task}/>
-                                )
-                            })
-                        }
-
-
-                    </div>
-
-                </div>*/}
-
             </div>
-
 
         </Container>
     )
