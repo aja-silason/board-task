@@ -1,5 +1,6 @@
+import { TaskList } from "../components/card/task-list.card";
 import { TaskCard } from "../components/card/task.card";
-import { Container } from "../components/layout/conatiner"
+import { Container } from "../components/layout/container"
 import { Text } from "../components/text/text";
 import { tasklist } from "../utils/mock/mock";
 import { removeNameIntoEmail } from "../utils/removeNameIntoTheEmail";
@@ -8,6 +9,7 @@ export type taskProps = {
     id: number,
     user_name: string,
     task_title: string,
+    description: string,
     status: string
 }
 
@@ -46,7 +48,26 @@ export function Home(){
                     </div>
 
 
-                    <p>Home Screen {name}</p>
+                    <Text text="Tarefas que estás adicionado" style={{fontWeight: 600}}/>
+
+                    <div className="flex justify-between w-full px-[1em]">
+                        <Text text="Tarefa" color="gray"/>
+                        <Text text="Usuários associados" color="gray" style={{width: "20%", textAlign: "center"}}/>
+                        <Text text="Criador" color="gray"/>
+                    </div>
+
+                    <div className=" flex gap-[.2em] w-full flex-wrap h-[10em] overflow-auto">
+
+
+                    {
+                            tasklist?.map((task) => {
+                                return (
+                                    <TaskList key={task?.id} hoverMessage={task?.task_title} onClick={() => alert(`Abriu Tarefa ${task?.id}`)} data={task}/>
+                                )
+                            })
+                        }
+                    </div>
+
                 </div>
 
             </div>

@@ -11,7 +11,7 @@ export const SideBar = () => {
 
     const menu: menuProps[] = [
         {to: "/home", icon: <BuildingOffice size={20}/>, menutext: "Início"},
-        {to: "/homea", icon: <BuildingOffice size={20}/>, menutext: "Início"},
+        {to: "/tasks", icon: <BuildingOffice size={20}/>, menutext: "Tarefas"},
     ] 
 
     const location = useLocation();
