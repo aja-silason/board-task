@@ -1,13 +1,11 @@
 import * as React from 'react';
 import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/auth.context';
 import { signOut } from 'firebase/auth';
 import { toast } from 'sonner';
 import { auth } from '../../../firebase.config';
 import { Button } from '../button/button';
-import { ProfileCard } from '../card/profile.card';
 import { Text } from '../text/text';
 
 type props = {

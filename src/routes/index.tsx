@@ -9,7 +9,7 @@ import { ProtectedRoute } from "./protectedRoutes";
 import { Task } from "../board/page/task";
 import { Board } from "../board/page/board";
 import { ProfileTask } from "../board/page/profile-task";
-import { Invite } from "../board/page/incite";
+import { Invite } from "../board/page/invite";
 
 export function RoutesApp() {
 

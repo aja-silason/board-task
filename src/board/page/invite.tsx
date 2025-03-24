@@ -1,25 +1,39 @@
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo-board.png";
+import { Button } from "../components/button/button";
+import { Text } from "../components/text/text";
 
-export const Invite = () => {
+
+export function Invite(){
 
     const navigate = useNavigate();
 
-    const handleStart = () => {
-        localStorage.clear();
-        navigate("/", {replace: true});    
-    }
-
     return (
-        <div className="h-[100vh] flex flex-col gap-[2em] items-center justify-center">
+
+        <div className="h-[100vh] flex flex-col gap-[1em] items-center justify-center">
 
             <img src={logo} alt="Board" className="w-[20%]"/>
+            
+            
+            <Text text="JAIr Bolsonaro convidou-o para um novo quadro"/>
+            
+            <div className="text-center">
+                <Text text="QUADRO"/>
+                <Text text="Quadro Eclesios pro" style={{fontWeight: 800, fontSize: "14pt"}}/>
+            </div>
 
-            <h2>404 - Página não encontrada</h2>
-            <h2>Você não deveria estar aqui, por favor clique no link abaixo para prosseguir em segurança</h2>
 
-            <button onClick={handleStart} className="text-[#264A7D] underline">Voltar</button>
 
+            <Text text="Click no botão abaixo"/>
+
+            <div className="flex justify-between w-[20%]">
+                <Button text="Recusar Convite" style={{backgroundColor: "red", cursor: "cursor-pointer"}} onClick={() => navigate("/home", {replace: true})}/>
+                <Button text="Aceitar Convite" style={{cursor: "cursor-pointer"}}/>
+            </div>
+
+            
         </div>
+
     )
+
 }

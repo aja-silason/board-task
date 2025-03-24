@@ -25,7 +25,7 @@ export function ProfileTask(){
 
     const userData = parsedUserData?.providerData[0];*/}
 
-    const {isfirst, isSecond, isThird} = useCommom();
+    const {isfirst, isSecond} = useCommom();
 
     const {data} = useGetData("boards");
 
