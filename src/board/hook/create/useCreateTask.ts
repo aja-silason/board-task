@@ -15,7 +15,7 @@ type props = {
 
 export const useCreateTask = () => {
 
-    const [data, setData] = useState<props>({title: "", comments: [], doing_id: "", status: "", createdAt: "" , boardId: "string"});
+    const [data, setData] = useState<props>({title: "", comments: [], doing_id: "", status: "", createdAt: "" , boardId: ""});
     const [isLoading, setIsLoading] = useState<boolean>();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -107,7 +107,10 @@ export const useCreateTask = () => {
 
             toast.success("Tarefa criada com sucesso", {duration: 3000});
 
+            setData({title: "", comments: [], doing_id: "", status: "", createdAt: "" , boardId: ""})
+
             setIsLoading(false)
+
 
         } catch (error) {
             console.log(error)

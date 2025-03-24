@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
-import { db } from "../../firebase.config";
- 
 
 // Componente para um item da coluna
 type Item = {
@@ -88,40 +85,28 @@ const DragAndDropApp: React.FC = () => {
     { id: "9", text: "Item 9" },
   ]);
 
+  // Função para mover o item de uma coluna para outra
+  const handleDropItem = (itemId: string, targetColumnId: string) => {
+    let item: Item | undefined;
+    let sourceColumn: string | null = null;
 
-const handleDropItem = async (itemId: string, targetColumnId: string) => {
-  let sourceColumn: string | null = null;
+    // Encontrar o item arrastado e remover de sua coluna original
+    if (column1Items?.some((item) => item?.id === itemId)) {
+        item = column1Items?.find((item) => item?.id === itemId);
+        sourceColumn = "column1";
+        setColumn1Items(column1Items?.filter((item) => item?.id !== itemId));
+    } else if (column2Items?.some((item) => item?.id === itemId)) {
+        item = column2Items?.find((item) => item?.id === itemId);
+        sourceColumn = "column2";
+        setColumn2Items(column2Items?.filter((item) => item?.id !== itemId));
+    } else if (column3Items?.some((item) => item?.id === itemId)) {
+        item = column3Items?.find((item) => item?.id === itemId);
+        sourceColumn = "column3";
+        setColumn3Items(column3Items.filter((item) => item?.id !== itemId));
+    }
 
-  // Identificando de qual coluna o item foi removido
-  if (column1Items.some((item) => item.id === itemId)) {
-    sourceColumn = "column1";
-    setColumn1Items(column1Items.filter((item) => item.id !== itemId));
-  } else if (column2Items.some((item) => item.id === itemId)) {
-    sourceColumn = "column2";
-    setColumn2Items(column2Items.filter((item) => item.id !== itemId));
-  } else if (column3Items.some((item) => item.id === itemId)) {
-    sourceColumn = "column3";
-    setColumn3Items(column3Items.filter((item) => item.id !== itemId));
-  }
-
-  if (sourceColumn && itemId) {
-    try {
-      // Referências para os documentos das colunas de origem e destino
-      const sourceRef = doc(db, "colunas", sourceColumn);
-      const targetRef = doc(db, "colunas", targetColumnId);
-
-      // Atualizar a coluna de origem: remover o item da lista de tarefas
-      await updateDoc(sourceRef, {
-        task: arrayRemove(itemId),
-      });
-
-      // Atualizar a coluna de destino: adicionar o item à lista de tarefas
-      await updateDoc(targetRef, {
-        task: arrayUnion(itemId),
-      });
-
-      // Atualizar as colunas no estado local para refletir as mudanças
-      const item = { id: itemId, text: `Task ${itemId}` }; // Exemplo de tarefa, use os dados reais da sua tarefa
+    if (item) {
+      // Adiciona o item à coluna de destino
       if (targetColumnId === "column1") {
         setColumn1Items((prev) => [...prev, item]);
       } else if (targetColumnId === "column2") {
@@ -129,18 +114,8 @@ const handleDropItem = async (itemId: string, targetColumnId: string) => {
       } else if (targetColumnId === "column3") {
         setColumn3Items((prev) => [...prev, item]);
       }
-    } catch (error) {
-      console.error("Erro ao atualizar as colunas no banco de dados:", error);
     }
-  }
-};
-
-
-
-
-
-
-
+  };
 
   return (
     <div style={{ display: "flex" }}>

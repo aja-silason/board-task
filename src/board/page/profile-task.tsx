@@ -5,6 +5,7 @@ import { useCommom } from "../context/common.context";
 import { useGetData } from "../hook/get/useGetData";
 import { Button } from "../components/button/button";
 import CreateTaskModal from "../components/modal/modal-create-task";
+import DragAndDropApp from "../components/drag-and-drp/drag-and-drop";
 
 export type taskProps = {
     id: number,
@@ -42,6 +43,10 @@ export function ProfileTask(){
                             <div>
                                 <CreateTaskModal children={<Button text="Adicionar Tarefa" style={{height: "40px"}}/>}/>
                                 <p>Task</p> 
+
+                                <DragAndDropApp />
+
+                                <div></div>
                             </div>
                         
 
