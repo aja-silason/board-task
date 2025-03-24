@@ -7,12 +7,15 @@ import { signOut } from 'firebase/auth';
 import { toast } from 'sonner';
 import { auth } from '../../../firebase.config';
 import { Button } from '../button/button';
+import { ProfileCard } from '../card/profile.card';
+import { Text } from '../text/text';
 
 type props = {
-    children: React.ReactNode
+    children: React.ReactNode,
+    data: any
 }
 
-export default function ProfileModal({children}: props) {
+export default function ProfileModal({children, data}: props) {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -44,6 +47,11 @@ export default function ProfileModal({children}: props) {
         }
     }
 
+    const profilePicture = data?.photoURL;
+    const oneLetter = data?.email?.split('')[0];
+
+    console.log("DATA", data);
+
   return (
     <div>
       <button aria-describedby={id} onClick={handleClick} className='bg-none border-none'>
@@ -56,18 +64,27 @@ export default function ProfileModal({children}: props) {
           horizontal: 'left',
         }}>
 
-        <Typography sx={{ p: 2 }}>
-            
-            <p>The content of the Popover.</p>
-            <p>The content of the Popover.</p>
-            <p>The content of the Popover.</p>
-            <p>The content of the Popover.</p>
-            <p>The content of the Popover.</p>
+          <div className='flex flex-col gap-[1em] p-[1em]'>
+              <div className='flex gap-[1em] '>
+                    {
+                        profilePicture ? (
+                            <img src={profilePicture} alt="" className="rounded-[5em] h-[4em] w-[4em]"/> 
+                        ) : <p className="flex items-center p-[.3em] font-[800] justify-center gap-[1em] rounded-[10em] text-center hover:bg-black w-[2.5em] hover:text-white transition">{oneLetter?.toUpperCase()}</p>
+                    }
+                
+                <div>
+                  <Text text={data?.displayName} style={{fontSize: "14pt", fontWeight: 700}}/>
+                  <Text text={data?.email} color='gray'/>
+                </div>
 
-            <Button text='Terminar sessão' onClick={handleSigOut} style={{backgroundColor: "red", width: "100%"}}/>
+              </div>
+
+              <hr />
+
+              <Button text='Terminar sessão' onClick={handleSigOut} style={{backgroundColor: "red", width: "100%"}}/>
+          </div>            
 
 
-        </Typography>
 
       </Popover>
     </div>

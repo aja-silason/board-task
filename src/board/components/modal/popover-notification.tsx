@@ -1,10 +1,19 @@
 import * as React from 'react';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
+import { Text } from '../text/text';
+import { Link } from 'react-router-dom';
 
 type props = {
     children: React.ReactNode
 }
+
+const data = [
+  {id: 1},
+  {id: 2},
+  {id: 3},
+  {id: 4},
+]
 
 export default function NotificationModal({children}: props) {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -33,8 +42,23 @@ export default function NotificationModal({children}: props) {
         }}>
 
         <Typography sx={{ p: 2 }}>
-            
-            <p>Notification Modal</p>
+          {
+            data?.map((data: any, index: number) => (
+              <Link to={`/invite/${data?.id}`} target='_blank'>
+                <div className='border rounded-[7px] px-[1em] py-[.5em] w-[20em] my-[.5em]' key={index}>
+                  <span className='flex gap-[.2em]'>
+                    <Text text="Convite de:" style={{fontSize: "10pt"}}/>
+                    <Text text="Jair Bolsonaro" style={{fontWeight: 700, fontSize: "10pt"}}/>
+                  </span>
+                  <span className='flex gap-[.2em]'>
+                    <Text text="Quadro" style={{fontSize: "10pt"}}/>
+                    <Text text="Alinhamento da Statement MC" style={{fontWeight: 700, fontSize: "10pt"}}/>
+                  </span>
+                </div>
+              </Link>
+            ))
+          }
+
 
         </Typography>
 

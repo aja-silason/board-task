@@ -8,6 +8,9 @@ type props = {
 }
 
 export const InnerTaskContainer = ({children ,name_task}: props) => {
+
+    console.log("Nome da tarefa inner_", name_task)
+
     return (
         <div className="flex flex-col gap-[1em]">
 

@@ -9,7 +9,7 @@ type props = {
 export const ProfileCard = ({children, hoverMessage, onClick}: props) => {
 
     return (
-        <button title={hoverMessage} type="button" className={`flex items-center justify-center border gap-[1em] rounded-[10em] text-center hover:bg-black w-[2.5em] hover:text-white transition`} onClick={onClick}>
+        <button title={hoverMessage} type="button" className={`flex items-center justify-center gap-[1em] rounded-[10em] text-center hover:bg-black w-[2.5em] hover:text-white transition`} onClick={onClick}>
             {children}
         </button>
     )

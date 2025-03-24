@@ -35,7 +35,7 @@ export const NavBar = () => {
                     <IconNotification onClick={() => {}} icon={<Notification size={20} />} hoverMessage="Notificação"/>
                 </NotificationModal>
 
-                <ProfileModal>
+                <ProfileModal data={user}>
                     <ProfileCard onClick={() => {}} hoverMessage="Perfil">
                         {
                             profilePicture ? (
