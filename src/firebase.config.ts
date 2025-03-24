@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { getFirestore } from "firebase/firestore";
+import {getMessaging, getToken, onMessage} from "firebase/messaging"
 
 import {FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider} from "firebase/auth"
 
@@ -22,5 +23,31 @@ const realtimeDb = getDatabase(app)
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const githubProvider = new GithubAuthProvider();
+const messaging = getMessaging(app);
 
-export {auth, db, realtimeDb, googleProvider, facebookProvider, githubProvider}
+const requestPermission = async () => {
+  try {
+    // Solicitar permissão para receber notificações
+    const permission = await Notification.requestPermission();
+    if (permission === "granted") {
+      const token = await getToken(messaging, { vapidKey: "SUA_VAPID_KEY" });
+      console.log("Token do dispositivo:", token);
+      // Armazene o token no Firestore ou no seu banco de dados para enviar notificações
+      return token;
+    } else {
+      console.error("Permissão de notificações negada.");
+    }
+  } catch (error) {
+    console.error("Erro ao solicitar permissão para notificações:", error);
+  }
+};
+
+// Configurar recebimento de mensagens
+onMessage(messaging, (payload) => {
+  console.log("Mensagem recebida:", payload);
+  // Exiba uma notificação no navegador
+  const { title, body }: any = payload.notification;
+  new Notification(title, { body });
+});
+
+export {auth, db, messaging, requestPermission, realtimeDb, googleProvider, facebookProvider, githubProvider}
