@@ -19,7 +19,7 @@ export function LogIn({user}: props){
 
     const navigate = useNavigate();
 
-    const {data, handleChange, handleSubmit, handleLoginWithGoogle, handleLoginFacebook, handleLoginGithub} = useLogin();
+    const {data, isLoading, handleChange, handleSubmit, handleLoginWithGoogle, handleLoginFacebook, handleLoginGithub} = useLogin();
     
     useEffect(() => {
         
@@ -56,7 +56,7 @@ export function LogIn({user}: props){
                         <Input placeholder="Sua password" type="password" value={data?.password} name="password" onChange={handleChange} required/>
 
 
-                        <Button text="Entrar" type="submit"/>
+                        <Button text="Entrar" type="submit" isLoading={isLoading}/>
 
                         <div className="flex flex-col gap-[.7em]">
                             <Text text="Entrar com" center/>
