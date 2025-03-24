@@ -37,7 +37,7 @@ export default function TaskModal({children, data: dataProps}: props) {
   const {data, handleChange, handleSubmit, isLoading} = useCreateComment(dataProps);
   
 
-  const {updateState, isLoading: isLGD} = useMoveTask(dataProps?.id)
+  const {updateState, isLoading: isLGD} = useMoveTask(dataProps?.id, handleOpen)
 
   console.log("NO COMMENT", dataProps?.id)
 

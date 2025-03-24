@@ -3,7 +3,7 @@ import { db } from "../../../firebase.config";
 import { toast } from "sonner";
 import { useState } from "react";
 
-export const useMoveTask = (taskId: string) => {
+export const useMoveTask = (taskId: string, handleOpen: VoidFunction) => {
 
     const [isLoading, setIsLoading] = useState<boolean>(false); 
 
@@ -19,6 +19,7 @@ export const useMoveTask = (taskId: string) => {
             })
 
             toast.success("Mudou de estado");
+            handleOpen();
             setIsLoading(false)
         } catch (error) {
             toast.warning("Não Mudou de estado");
