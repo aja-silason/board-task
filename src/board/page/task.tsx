@@ -30,7 +30,6 @@ export function Task(){
     const storageUserData = localStorage?.getItem("userData");
     const parsedUserData = storageUserData && JSON.parse(storageUserData);
 
-    const userData = parsedUserData?.providerData[0];
     
     const myTasks = data?.filter((item) => item?.ownerId === parsedUserData?.uid);
 
