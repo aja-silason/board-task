@@ -10,7 +10,7 @@ type props = {
     ownerId?: string,
     tag: string[],
     participants: string[],
-    tasks: string[],
+    task: string[],
     createdAt: any,
     updatedAt: any,
     status: string
@@ -18,7 +18,7 @@ type props = {
 
 export const useCreateBoard = () => {
 
-    const [data, setData] = useState<props>({title: "", description: "", participants: [], status: "", tasks: [], boardId: "", ownerId: "", tag: [], updatedAt: "", createdAt: ""});
+    const [data, setData] = useState<props>({title: "", description: "", participants: [], status: "", task: [], boardId: "", ownerId: "", tag: [], updatedAt: "", createdAt: ""});
     const [isLoading, setIsLoading] = useState<boolean>();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -48,7 +48,7 @@ export const useCreateBoard = () => {
                 participants: [parsedData?.uid],
                 status: 'open',
                 tag: ['Quadro'],
-                tasks: [],
+                task: [],
                 updatedAt: new Date(),
                 createdAt: new Date(),
             }
@@ -62,21 +62,9 @@ export const useCreateBoard = () => {
                 }
             }
 
-            /*const options = {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(payload)
-            }*/
-            
-            //const res = await axios.post(`${api_url}titles.json`, payload);
-
             const board_store_fs = collection(db, 'boards');
-            //const board_store_fs = doc(db, 'boards', parsedData?.uid);
 
             await addDoc(board_store_fs, payload);
-            //await setDoc(board_store_fs, payload);
 
             toast.success("Tarefa criada com sucesso", {duration: 3000});
 

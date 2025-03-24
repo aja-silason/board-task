@@ -3,6 +3,8 @@ import { Container } from "../components/layout/container"
 import { InnerTaskContainer } from "../components/layout/inner-task-container";
 import { useCommom } from "../context/common.context";
 import { useGetData } from "../hook/get/useGetData";
+import { Button } from "../components/button/button";
+import CreateTaskModal from "../components/modal/modal-create-task";
 
 export type taskProps = {
     id: number,
@@ -28,8 +30,6 @@ export function ProfileTask(){
 
     const filterTask: any = data?.filter((task) => task?.id?.includes(id))[0]
 
-    console.log("Task", filterTask, data, id)
-
     return (
         <Container>
 
@@ -38,8 +38,12 @@ export function ProfileTask(){
                 <InnerTaskContainer name_task={filterTask?.title}>
                     {
                         isfirst ? (
+
+                            <div>
+                                <CreateTaskModal children={<Button text="Adicionar Tarefa" style={{height: "40px"}}/>}/>
+                                <p>Task</p> 
+                            </div>
                         
-                            <p>Task</p> 
 
                         ): isSecond ? <p>Board</p> : isThird && <p>Participants</p> 
                     }

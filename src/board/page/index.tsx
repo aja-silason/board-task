@@ -2,12 +2,12 @@ import { Button } from "../components/button/button";
 import { TaskList } from "../components/card/task-list.card";
 import { TaskCard } from "../components/card/task.card";
 import { Container } from "../components/layout/container"
-import CreateTaskModal from "../components/modal/modal-create-task";
 import { Text } from "../components/text/text";
 import { useInternNavigation } from "../hook/behavior/useNavigation";
 import { useGetData } from "../hook/get/useGetData";
 import { removeNameIntoEmail } from "../utils/removeNameIntoTheEmail";
 import { NoData } from "../components/behavior/nodata";
+import CreateBoardModal from "../components/modal/modal-create-board";
 
 export type taskProps = {
     id: number,
@@ -42,7 +42,7 @@ export function Home(){
                     
                     <div className="flex justify-between">
                         <Text text="Suas tarefas" style={{fontWeight: 600}}/>
-                        <CreateTaskModal children={<Button text="Novo Quadro"/>}/>
+                        <CreateBoardModal children={<Button text="Novo Quadro"/>}/>
                     </div>
 
                     <div className=" flex gap-[1.5em] w-full flex-wrap h-[30em] overflow-auto">
