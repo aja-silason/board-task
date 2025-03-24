@@ -1,5 +1,5 @@
 type props = {
-    text: string | number,
+    text: string | number | any,
     color?: string,
     center?: boolean,
     end?: boolean,

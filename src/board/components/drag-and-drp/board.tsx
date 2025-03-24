@@ -80,13 +80,6 @@ const BoardTasks = ({datas}: board) => {
         <DragAndDrop datas={filterTask}/>
       </div>
 
-      <button
-        onClick={() =>
-          handleReorderTasks(boardTasks)
-        }
-      >
-        Reordenar Tarefas
-      </button>
     </div>
   );
 };

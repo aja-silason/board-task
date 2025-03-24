@@ -8,6 +8,7 @@ import { Text } from '../text/text';
 import { X } from '@phosphor-icons/react';
 import { Button } from '../button/button';
 import { useCreateTask } from '../../hook/create/useCreateTask';
+import { TextArea } from '../input-data/textarea';
 
 const style = {
   position: 'absolute',
@@ -74,10 +75,10 @@ export default function CreateTaskModal({children}: props) {
                     <Input name="title" onChange={handleChange} placeholder="" value={data?.title} type="text"/>
                   </div>
 
-                  {/*<div className='flex flex-col gap-[.5em] h-[20em]'>
+                  <div className='flex flex-col gap-[.5em] h-[20em]'>
                     <Text text="Descreva a tarefa *"/>
-                    <TextArea name="description" onChange={handleChange} placeholder="" value={data?.description}  style={{}}/>
-                  </div>*/}
+                    <TextArea name="description" onChange={handleChange} placeholder="" value={data?.description}/>
+                  </div>
 
                   <Button text='Adicionar Tarefa' type='submit' isLoading={isLoading}/>
 

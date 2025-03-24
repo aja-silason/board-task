@@ -1,9 +1,8 @@
-import { taskProps } from "../../page";
 import { shortText } from "../../utils/shortText";
 import { Text } from "../text/text"
 
 type props = {
-    data: taskProps,
+    data: any,
     onClick?: VoidFunction,
     hoverMessage: string
 }
@@ -15,6 +14,8 @@ export const TaskList = ({data, hoverMessage, onClick}: props) => {
     const title = shortText(data?.title, 20);
 
     const description = shortText(data?.description, 10);
+
+    const totalUser = data?.participants?.length;
 
     return (
         <button title={hoverMessage} type="button" className={`flex items-center justify-center border border-[#eee] p-[.4em] gap-[1em] h-[4em] w-full rounded-[.5em] hover:shadow-lg transition`} onClick={onClick}>
@@ -33,7 +34,7 @@ export const TaskList = ({data, hoverMessage, onClick}: props) => {
                 </div>
 
                 <div className="flex flex-col items-center justify-center w-[50%]">
-                    <Text text={5} style={{fontSize: "11pt"}} color="gray"/>
+                    <Text text={totalUser} style={{fontSize: "11pt"}} color="gray"/>
                 </div>
                 
                 <div className="flex flex-col items-end justify-center w-[50%]">

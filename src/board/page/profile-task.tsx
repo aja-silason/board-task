@@ -41,12 +41,13 @@ export function ProfileTask(){
                         isfirst ? (
 
                             <div className="flex flex-col gap-[1em]">
-                                <CreateTaskModal children={<Button text="Adicionar Tarefa" style={{height: "40px"}}/>}/>
+                                <div className="flex justify-end">
+                                    <CreateTaskModal children={<Button text="Adicionar Tarefa" style={{height: "40px"}}/>}/>
+                                </div>
                                 <div className="flex flex-col overflow-auto h-[40em]">
                                     <BoardTasks datas={filterTask}/>
                                 </div>
                             </div>
-                        
 
                         ): isSecond && <p>Board</p>
                     }

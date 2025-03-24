@@ -30,7 +30,20 @@ export function Home(){
 
     const {data} = useGetData("boards");
 
-    console.log("that i make part", data?.map((item) => item?.participants)[0],data);
+    //const myTask = data?.map((item) => item?.ownerId?.includes(parsedUserData?.uid));
+
+    const myTasks = data?.filter((item) => item?.ownerId === parsedUserData?.uid);
+
+    const tasksThatIMakePart = data?.filter((item) => item?.participants?.includes(parsedUserData?.uid));
+
+
+  //  const myTas = data?.map((item) => item);
+    
+//    const taskThatIMakePart = data?.map((item) => item?.participants?.includes(parsedUserData?.uid));
+
+    console.log("that i make part", myTasks, tasksThatIMakePart);
+    console.log("OWNER", data);
+    console.log("OHHH SHIIII");
 
     return (
         <Container>
@@ -48,15 +61,14 @@ export function Home(){
                     <div className=" flex gap-[1.5em] w-full flex-wrap h-[30em] overflow-auto">
 
                         {
-                        data?.length > 0 ?
-                           data?.map((task: any, index: number) => {
-                                return (
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                )
-                            }) : (
+                            !myTasks || myTasks.length === 0 ? (
                                 <NoData text="Sem informação para mostrar no momento"/>
-                            )
-
+                            ) :
+                            myTasks?.map((task: any, index: number) => {
+                                    return (
+                                        <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
+                                    )
+                            })
                         }
 
 
@@ -74,16 +86,13 @@ export function Home(){
                     <div className=" flex gap-[.2em] w-full flex-wrap h-[10em] overflow-auto">
 
 
-                        {
-                            data?.length > 0 ? 
-                            data?.slice(0,2)?.map((task) => {
-                                return (
-                                    <TaskList key={task?.id} hoverMessage={task?.title} onClick={() => alert(`Abriu Tarefa ${task?.id}`)} data={task}/>
-                                )
-                            }) : (
-                                <NoData text="Não pertence a outras tarefas no momento"/>
-                            )
-                        }
+                    {tasksThatIMakePart && tasksThatIMakePart.length > 0 ? (
+                            tasksThatIMakePart.map((task) => (
+                                <TaskList key={task?.id} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id)} data={task}/>
+                            ))
+                        ) : (
+                            <NoData text="Não pertence a outras tarefas no momento" />
+                        )}
                     </div>
 
                 </div>

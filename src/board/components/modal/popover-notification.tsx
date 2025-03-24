@@ -10,13 +10,6 @@ type props = {
     children: React.ReactNode
 }
 
-const data = [
-  {id: 1},
-  {id: 2},
-  {id: 3},
-  {id: 4},
-]
-
 export default function NotificationModal({children}: props) {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 

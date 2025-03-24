@@ -11,11 +11,12 @@ type props = {
     comments: string[],
     createdAt?: any,
     boardId: string | any,
+    description: string,
 }
 
 export const useCreateTask = () => {
 
-    const [data, setData] = useState<props>({title: "", comments: [], doing_id: "", status: "", createdAt: "" , boardId: ""});
+    const [data, setData] = useState<props>({title: "", comments: [], doing_id: "", status: "", createdAt: "" , boardId: "", description: ""});
     const [isLoading, setIsLoading] = useState<boolean>();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -83,7 +84,8 @@ export const useCreateTask = () => {
                 comments: [],
                 doing_id: parsedData?.uid,
                 status: 'pendente',
-                createdAt: new Date()
+                createdAt: new Date(),
+                description: data?.description
             }
 
             const isValidate: Array<keyof props> = ["title"];
@@ -107,7 +109,7 @@ export const useCreateTask = () => {
 
             toast.success("Tarefa criada com sucesso", {duration: 3000});
 
-            setData({title: "", comments: [], doing_id: "", status: "", createdAt: "" , boardId: ""})
+            setData({title: "", comments: [], doing_id: "", status: "", createdAt: "" , boardId: "", description: ""})
 
             setIsLoading(false)
 
