@@ -10,6 +10,7 @@ import { Button } from '../button/button';
 import { breakText } from '../../utils/breakText';
 import { CommentCard } from '../card/comment.card';
 import { useCreateComment } from '../../hook/create/useCreateComment';
+import { useMoveTask } from '../../hook/behavior/useMoveTask';
 
 const style = {
   position: 'absolute',
@@ -34,8 +35,11 @@ export default function TaskModal({children, data: dataProps}: props) {
   const handleClose = () => setOpen(false);
 
   const {data, handleChange, handleSubmit, isLoading} = useCreateComment(dataProps);
+  
 
-  console.log("NO COMMENT", data)
+  const {updateState, isLoading: isLGD} = useMoveTask(dataProps?.id)
+
+  console.log("NO COMMENT", dataProps?.id)
 
   return (
     <div>
@@ -65,20 +69,28 @@ export default function TaskModal({children, data: dataProps}: props) {
 
                 {dataProps?.status == "pendente" ? (
                 
-                  <div className='bg-[yellow] rounded-[.2em] px-[1em]'>
+                  <div className='bg-[yellow] flex items-center rounded-[.2em] px-[1em]'>
                     <Text text={dataProps?.status} style={{fontSize: "18pt", fontWeight: 600}}/>
                   </div>
 
-                  ) :  dataProps?.status == "fechado" ? (
-                    <div className='bg-[red] rounded-[.2em] px-[1em]'>
+                  ) :  dataProps?.status == "desenvolvimento" ? (
+                    <div className='bg-[green] flex items-center text-white rounded-[.2em] px-[1em]'>
                     <Text text={dataProps?.status} style={{fontSize: "18pt", fontWeight: 600}}/>
                   </div>
                   
                   ) : (
-                    <div className='bg-[green] rounded-[.2em] px-[1em]'>
+                    <div className='bg-[red] flex items-center text-white rounded-[.2em] px-[1em]'>
                       <Text text={dataProps?.status} style={{fontSize: "18pt", fontWeight: 600}}/>
                     </div>
                   )}
+
+                  {
+                    dataProps?.status == "pendente" ? (
+                      <Button text='Mover para desenvolvimento' onClick={() => updateState("desenvolvimento")} isLoading={isLGD}/>
+                    ) : dataProps?.status ==  "desenvolvimento" && (
+                      <Button text='Concluir' isLoading={isLGD} onClick={() => updateState("fechado")}/>
+                    )
+                  }
 
               </div>
               
@@ -91,10 +103,9 @@ export default function TaskModal({children, data: dataProps}: props) {
 
             <div className='flex justify-between gap-[1em] mt-[1em] h-[90%]'> 
 
-              <div className='w-[60%] overflow-auto flex flex-col gap-[1em]'>
+              <div className='w-[60%] overflow-auto flex flex-col gap-[1em] border-r'>
                 <Text text={dataProps?.title} style={{fontSize: "18pt", fontWeight: 600}}/>
                 <Text text={breakText(dataProps?.description)} style={{fontWeight: 400}}/>                  
-
               </div>
               
               <div className='w-[30%] flex flex-col justify-between h-[40em]'> 
@@ -105,6 +116,7 @@ export default function TaskModal({children, data: dataProps}: props) {
                     dataProps?.comments?.map((cm: any) => {
                       <CommentCard data={cm}/>
                     })
+
                   }
                 </div>
 

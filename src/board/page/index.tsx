@@ -30,20 +30,10 @@ export function Home(){
 
     const {data} = useGetData("boards");
 
-    //const myTask = data?.map((item) => item?.ownerId?.includes(parsedUserData?.uid));
-
     const myTasks = data?.filter((item) => item?.ownerId === parsedUserData?.uid);
 
     const tasksThatIMakePart = data?.filter((item) => item?.participants?.includes(parsedUserData?.uid));
 
-
-  //  const myTas = data?.map((item) => item);
-    
-//    const taskThatIMakePart = data?.map((item) => item?.participants?.includes(parsedUserData?.uid));
-
-    console.log("that i make part", myTasks, tasksThatIMakePart);
-    console.log("OWNER", data);
-    console.log("OHHH SHIIII");
 
     return (
         <Container>

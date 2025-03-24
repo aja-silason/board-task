@@ -39,7 +39,7 @@ export function Board(){
                         {
                             tasklist?.map((task) => {
                                 return (
-                                    <TaskCard key={task?.id} hoverMessage={task?.task_title} onClick={() => alert(`Abriu Tarefa ${task?.id}`)} data={task}/>
+                                    <TaskCard key={task?.id} hoverMessage={task?.title} onClick={() => alert(`Abriu Tarefa ${task?.id}`)} data={task}/>
                                 )
                             })
                         }
@@ -62,7 +62,7 @@ export function Board(){
                     {
                             tasklist?.map((task) => {
                                 return (
-                                    <TaskList key={task?.id} hoverMessage={task?.task_title} onClick={() => alert(`Abriu Tarefa ${task?.id}`)} data={task}/>
+                                    <TaskList key={task?.id} hoverMessage={task?.title} onClick={() => alert(`Abriu Tarefa ${task?.id}`)} data={task}/>
                                 )
                             })
                         }

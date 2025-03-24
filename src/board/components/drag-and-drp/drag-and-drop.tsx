@@ -10,8 +10,8 @@ type dragProps = {
 export const DragAndDrop = ({datas}: dragProps) => {
 
   const pending = datas?.filter((task: any) => task?.status?.includes("pendente"));
-  const development = datas?.filter((task: any) => task?.status?.includes("dev"));
-  const closed = datas?.filter((task: any) => task?.status?.includes("closed"))
+  const development = datas?.filter((task: any) => task?.status?.includes("desenvolvimento"));
+  const closed = datas?.filter((task: any) => task?.status?.includes("fechado"))
 
 
   const handleDropItem = async (itemId: string, targetColumnId: string) => {
