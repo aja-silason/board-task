@@ -31,19 +31,13 @@ export function LogIn({user}: props){
 
             
     return (
-        <div className={`w-full md:h-screen flex flex-col items-center justify-center`}>
+        <div className={`w-full h-screen flex flex-col items-center justify-center`}>
             
-            {
-            //<div className="flex justify-end items-start w-full">
-              //  <ButtonTheme />
-            //</div>
-            }
-
-            <div className={`flex flex-col items-center justify-center border w-[40em] rounded-[.5em] gap-[1em] p-[4em]`}>
+            <div className={`flex flex-col items-center justify-center md:border md:w-[35%] md:justify-center rounded-[.5em] gap-[1em] p-[3em]`}>
                 
 
-                <div className="flex flex-col text-center mb-[1em]">
-                    <img src={logoBoard} alt="Logo Board" className="w-[18em]"/>
+                <div className="flex flex-col items-center text-center mb-[1em]">
+                    <img src={logoBoard} alt="Logo Board" className="w-[40%]"/>
 
                     <Text text="Entre"/>
                     <Text text="Gerencia as suas tarefas no quadro"/>
@@ -51,26 +45,21 @@ export function LogIn({user}: props){
                 </div>
 
                 <div className="flex flex-col w-full">
-                    <form onSubmit={handleSubmit} className="w-full flex flex-col gap-[2em]">
+                    <form onSubmit={handleSubmit} className="w-full flex flex-col gap-[.8em]">
                         <Input value={data?.email} name="email" onChange={handleChange} placeholder="Insira seu email" type="email" required/>
                         <Input placeholder="Sua password" type="password" value={data?.password} name="password" onChange={handleChange} required/>
-
-
                         <Button text="Entrar" type="submit" isLoading={isLoading}/>
 
-                        <div className="flex flex-col gap-[.7em]">
+                        <div className="flex flex-col gap-[.4em]">
                             <Text text="Entrar com" center/>
-                            
                             <SocialMidiaCard social_midia_logo={<GoogleLogo size={25}/>} text="Google" onClick={handleLoginWithGoogle}/>
-
                             <SocialMidiaCard social_midia_logo={<FacebookLogo size={25}/>} text="Facebook" onClick={handleLoginFacebook}/>
-                            
                             <SocialMidiaCard social_midia_logo={<GithubLogo size={25}/>} text="GitHub" onClick={handleLoginGithub}/>
                         </div>
 
                         <Link to={'/register'}><Text text="Não possui conta? Criar conta" end/></Link>
 
-                        <p className="text-[11pt] text-[gray] font-[400] text-center">{year} @ todos os direitos reservados a STETMENT MC</p>
+                        <p className="text-[11pt] text-[gray] font-[400] text-center">{year} @ todos os direitos reservados a <strong>aja silason</strong></p>
 
                     </form>
                 </div>

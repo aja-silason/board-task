@@ -12,7 +12,7 @@ type loginProps = {
 export const Input = ({placeholder, value, name, onChange, required, type, style}: loginProps) => {
     return (
         <div className="border w-full rounded-[5px]">
-            <input type={type ?? "text"} placeholder={placeholder ?? "Digite valor aqui"} className="w-full p-[.5em] py-[1em] font-[500] rounded-[5px]" required={required} value={value} name={name} onChange={onChange} style={style} maxLength={70}/>
+            <input type={type ?? "text"} placeholder={placeholder ?? "Digite valor aqui"} className="w-full p-[.5em] py-[.8em] text-[10pt] outline-none font-[500] rounded-[5px]" required={required} value={value} name={name} onChange={onChange} style={style} maxLength={70}/>
         </div>
     )
 }

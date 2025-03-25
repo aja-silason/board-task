@@ -11,7 +11,7 @@ type props = {
 export const Button = ({text, type, style, isLoading, onClick}: props) => {
 
     return (
-        <button type={type ?? "button"} onClick={onClick} className={`border p-[.8em] flex items-center justify-center rounded-[.5em] bg-black  text-[#fff]`} style={style}>
+        <button type={type ?? "button"} onClick={onClick} className={`border p-[.8em] flex items-center text-[10pt] justify-center rounded-[.5em] bg-black  text-[#fff]`} style={style}>
 
             {
                 isLoading ? (

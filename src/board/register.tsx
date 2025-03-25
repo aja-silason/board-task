@@ -8,17 +8,17 @@ import { useCreateAccount } from "./hook/auth/useCreateAccount";
 
 export function Register(){
 
-    const {data, handleChange, handleSubmit} = useCreateAccount();
+    const {data, isLoading, handleChange, handleSubmit} = useCreateAccount();
 
     const time = new Date();
     const year = time?.getFullYear();
 
     return (
-        <div className="w-full md:h-screen border flex items-center justify-center">
-            <div className="flex flex-col items-center justify-center border w-[40em] rounded-[.5em] gap-[1em] p-[4em]">
+        <div className="w-full h-screen flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center md:border md:w-[35%] md:justify-center rounded-[.5em] gap-[1em] p-[3em]">
 
-                <div className="flex flex-col text-center mb-[1em]">
-                    <img src={logoBoard} alt="Logo Board" className="w-[18em]"/>
+                <div className="flex flex-col items-center text-center mb-[1em]">
+                    <img src={logoBoard} alt="Logo Board" className="w-[40%]"/>
                     <p className="text-[12pt] font-[500]">Criar Conta</p>
                     <p className="text-[12pt] font-[500]">Gerencia as suas tarefas no quadro</p>
                 </div>
@@ -36,11 +36,11 @@ export function Register(){
                         
                         </div>
                         
-                        <Button text="Criar conta" type="submit" />
+                        <Button text="Criar conta" type="submit" isLoading={isLoading}/>
 
                         <Link to={"/"}><Text text="Tenho uma conta. Logar"/></Link>
 
-                        <p className="text-[11pt] text-[gray] font-[400] text-center">{year} @ todos os direitos reservados a STETMENT MC</p>
+                        <p className="text-[11pt] text-[gray] font-[400] text-center">{year} @ todos os direitos reservados a <strong>aja Silason</strong></p>
 
                     </form>
                 </div>
