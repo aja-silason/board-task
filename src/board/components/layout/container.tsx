@@ -17,8 +17,8 @@ export const Container = ({children}: props) => {
         <div className="flex flex-col">
             
             <NavBar  style={`z-50 sx:absolute md:relative ${isVisible && !isLargeScreen ? 'block' : 'hidden'} md:flex`}/>
-            
-            <NavBarMobile style={`z-50 sx:absolute md:relative ${isVisible && !isLargeScreen ? 'block' : 'block'} md:hidden`}/>
+
+            <NavBarMobile style={`z-50 sx:absolute md:relative ${isVisible && !isLargeScreen ? 'hidden' : 'block'} md:hidden`}/>
 
             <div className="flex gap-[1em] h-full bg-white">
                 

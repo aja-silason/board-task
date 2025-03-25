@@ -39,7 +39,7 @@ export function Task(){
     return (
         <Container>
 
-            <div className="flex flex-col gap-[1em] w-full px-[4em]">
+            <div className="flex flex-col gap-[1em] w-full px-[.5em]">
                 <Text text={`Tarefas em Grupo`} style={{fontSize: "18pt", fontWeight: 600}} />
 
                 <span className="flex gap-[1em]">
@@ -54,10 +54,10 @@ export function Task(){
 
                     {
                         isfirst && (
-                            <>
+                            <div className="md:h-[30em]">
                                 <Text text="Suas tarefas" style={{fontWeight: 600}}/>
-                                <div className=" flex gap-[1.5em] w-full flex-wrap h-[40em] overflow-auto">
-            
+                                <div className=" flex gap-[1.5em] w-full flex-wrap h-[35em] overflow-auto">
+                                    <div className="flex flex-wrap gap-[.5em]">
                                     {
                                         !myTasks || myTasks.length === 0 ? (
                                             <NoData text="Sem informação para mostrar no momento"/>
@@ -68,16 +68,16 @@ export function Task(){
                                                 )
                                         })
                                     }
-            
+                                    </div>
                                 </div>
-                            </>
+                            </div>
                         )
                     }
 
                     
                     {
                         isSecond && (
-                            <>
+                            <div className="md:h-[30em]">
                                 <Text text="Tarefas que fazes parte" style={{fontWeight: 600}}/>
 
                                 <div className="flex justify-between w-full px-[1em]">
@@ -97,7 +97,7 @@ export function Task(){
                                     )}
                                     
                                 </div>
-                            </>
+                            </div>
                         )
                     }
                     

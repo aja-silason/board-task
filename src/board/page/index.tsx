@@ -9,6 +9,7 @@ import { removeNameIntoEmail } from "../utils/removeNameIntoTheEmail";
 import { NoData } from "../components/behavior/nodata";
 import CreateBoardModal from "../components/modal/modal-create-board";
 import SearchModal from "../components/modal/modal-search";
+import { useScreen } from "../context/screen.context";
 
 export type taskProps = {
     id: number,
@@ -33,8 +34,12 @@ export function Home(){
 
     const myTasks = data?.filter((item) => item?.ownerId === parsedUserData?.uid);
 
-    const tasksThatIMakePart = data?.filter((item) => item?.participants?.includes(parsedUserData?.uid));
+    const tasksThatIMakePart = data?.filter((item) => item?.participants?.includes
+    (parsedUserData?.uid));
 
+    const {isLargeScreen, isVisible} = useScreen();
+
+    console.log("LARGE", isLargeScreen, !isVisible)
 
     return (
         <Container>
@@ -56,7 +61,7 @@ export function Home(){
                         <CreateBoardModal children={<Button text="Novo Quadro"/>}/>
                     </div>
 
-                    <div className=" flex gap-[1.5em] w-full flex-wrap md:h-[20em] overflow-auto">
+                    <div className=" flex gap-[1.5em] w-full flex-wrap md:h-[16em] overflow-auto">
                         {
                             !myTasks || myTasks.length === 0 ? (
                                 <NoData text="Sem informação para mostrar no momento"/>
@@ -64,22 +69,6 @@ export function Home(){
                             myTasks?.map((task: any, index: number) => {
                                 return (
                                     <>
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
                                     <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
                                     </>
                                 )
@@ -90,22 +79,23 @@ export function Home(){
 
                     <Text text="Tarefas que foste adicionado recentemente" style={{fontWeight: 600}}/>
 
-                    <div className="flex justify-between w-full px-[1em]">
+                    <div className={`${!isLargeScreen && isVisible ? 'flex' : 'hidden'} md:flex justify-between w-full px-[1em]`}>
                         <Text text="Tarefa" color="gray"/>
-                        <Text text="Usuários associados" color="gray" style={{width: "20%", textAlign: "center"}}/>
+                        <Text text="Usuários" color="gray" style={{width: "20%", textAlign: "center"}}/>
                         <Text text="Criador" color="gray"/>
                     </div>
 
-                    <div className=" flex gap-[.2em] w-full flex-wrap h-[10em] overflow-auto">
-
-
-                    {tasksThatIMakePart && tasksThatIMakePart.length > 0 ? (
+                    <div className={` ${!isLargeScreen && isVisible ? 'flex' : 'hidden'} md:flex gap-[.2em] w-full flex-wrap h-[10em] overflow-auto`}>
+                    
+                    { 
+                        tasksThatIMakePart && tasksThatIMakePart.length > 0 ? (
                             tasksThatIMakePart.map((task) => (
                                 <TaskList key={task?.id} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id)} data={task}/>
                             ))
                         ) : (
                             <NoData text="Não pertence a outras tarefas no momento" />
-                        )}
+                        ) 
+                    }
                     </div>
 
                 </div>

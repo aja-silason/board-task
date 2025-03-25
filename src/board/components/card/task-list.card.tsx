@@ -9,12 +9,14 @@ type props = {
 
 export const TaskList = ({data, hoverMessage, onClick}: props) => {
 
+    //const {isLargeScreen, isVisible} = useScreen();
+
     const centerLetter = data?.title?.split('')[0];
 
-    const title = shortText(data?.title, 20);
+    const title = shortText(data?.title, 30);
 
-    const description = shortText(data?.description, 10);
-
+    const description = shortText(data?.description, 40);
+    
     const totalUser = data?.participants?.length;
 
     return (
@@ -28,7 +30,7 @@ export const TaskList = ({data, hoverMessage, onClick}: props) => {
                     </div>
 
                     <div className="flex flex-col items-start">
-                        <Text text={title ?? "sss"}/>
+                        <Text text={title ?? ""}/>
                         <Text text={description} style={{fontSize: "11pt"}} color="gray"/>
                     </div>
                 </div>

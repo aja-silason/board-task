@@ -68,6 +68,8 @@ export const useCreateBoard = () => {
 
             toast.success("Tarefa criada com sucesso", {duration: 3000});
 
+            setData({title: "", description: "", participants: [], status: "", task: [], boardId: "", ownerId: "", tag: [], updatedAt: "", createdAt: ""});
+
             setIsLoading(false)
 
         } catch (error) {

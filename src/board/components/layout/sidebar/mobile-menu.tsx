@@ -31,7 +31,7 @@ export const SideBarMobile = ({style}: props) => {
 
             <nav className="flex flex-row h-[90%] justify-between">
 
-                <div className="flex flex-row w-full justify-center gap-[2em]">
+                <div className="flex flex-row w-full justify-between px-[2em] gap-[2em]">
                     {
                         menu?.map((menu: menuProps) => {
 

@@ -22,8 +22,6 @@ export function Invite(){
                 <Text text="Quadro Eclesios pro" style={{fontWeight: 800, fontSize: "14pt"}}/>
             </div>
 
-
-
             <Text text="Click no botão abaixo"/>
 
             <div className="flex justify-between w-[20%]">

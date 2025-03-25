@@ -12,7 +12,7 @@ export const TaskCard = ({data, hoverMessage, onClick}: props) => {
 
     const centerLetter = data?.title?.split('')[0];
 
-    const title = shortText(data?.title, 40);
+    const title = shortText(data?.title, 15);
     const description = shortText(data?.description, 15);
 
     return (
@@ -23,7 +23,7 @@ export const TaskCard = ({data, hoverMessage, onClick}: props) => {
                     <h3 className="text-black border px-[.5em] rounded-[.2em] bg-white font-[800]">{centerLetter}</h3>
                 </div>
 
-                <div className="flex flex-col items-start">
+                <div className="flex flex-col text-center items-start">
                     <Text text={title}/>
                     <Text text={description} style={{fontSize: "11pt"}} color="gray"/>
                 </div>
