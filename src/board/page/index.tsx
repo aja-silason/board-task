@@ -8,6 +8,7 @@ import { useGetData } from "../hook/get/useGetData";
 import { removeNameIntoEmail } from "../utils/removeNameIntoTheEmail";
 import { NoData } from "../components/behavior/nodata";
 import CreateBoardModal from "../components/modal/modal-create-board";
+import SearchModal from "../components/modal/modal-search";
 
 export type taskProps = {
     id: number,
@@ -38,7 +39,14 @@ export function Home(){
     return (
         <Container>
 
-            <div className="flex flex-col gap-[1em] w-full px-[4em]">
+            <div className="flex flex-col gap-[1em] w-full md:px-[4em]">
+                
+                <div className="w-[100%]">
+                    <SearchModal>
+                        <button type="button" className="border border-1 w-full rounded-[5px] p-[.5em] text-start py-[.5em] font-[500]">Pesquisar tarefas</button>
+                    </SearchModal>
+                </div>
+
                 <Text text={`Saudações, ${name}`} style={{fontSize: "18pt", fontWeight: 600}} />
 
                 <div className="flex flex-col gap-[1em]">
@@ -49,7 +57,6 @@ export function Home(){
                     </div>
 
                     <div className=" flex gap-[1.5em] w-full flex-wrap h-[30em] overflow-auto">
-
                         {
                             !myTasks || myTasks.length === 0 ? (
                                 <NoData text="Sem informação para mostrar no momento"/>
@@ -60,8 +67,6 @@ export function Home(){
                                     )
                             })
                         }
-
-
                     </div>
 
 

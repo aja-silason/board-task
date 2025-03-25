@@ -1,10 +1,7 @@
 import { BuildingOffice, DeviceTabletSpeaker, SignOut } from "@phosphor-icons/react"
-import { signOut } from "firebase/auth"
 import { ReactNode } from "react"
-import { Link, useLocation, useNavigate } from "react-router-dom"
-import { useAuth } from "../../../context/auth.context"
-import { toast } from "sonner"
-import { auth } from "../../../../firebase.config"
+import { Link, useLocation } from "react-router-dom"
+import { useLogOut } from "../../../hook/auth/useLogOut"
 
 type menuProps = {
     to: string,
@@ -17,31 +14,17 @@ type props = {
 }
 export const SideBarMobile = ({style}: props) => {
 
-    const {setUser} = useAuth();
-    
-    const navigate = useNavigate();
 
     const menu: menuProps[] = [
         {to: "/home", icon: <BuildingOffice size={20}/>, menutext: "Início"},
         {to: "/tasks", icon: <DeviceTabletSpeaker size={20}/>, menutext: "Tarefas"},
     ] 
 
-    const handleSigOut = async () => {
-        
-        try {
-
-            await signOut(auth)
-            localStorage.clear();
-            setUser(null);
-            navigate("/", {replace: true})
-
-        } catch (error) {
-            toast.warning("Não foi possível terminar sessão, estamos resolvendo por você", {duration: 3000});
-
-        }
-    }
+    
 
     const location = useLocation();
+
+    const {handleSigOut} = useLogOut();
 
     return (
         <div className={`border-t md:w-[18%] md:h-[65px] fixed bottom-0 w-full px-[.4em] pt-[1em] flex flex-col gap-[.5em] bg-white ${style}`}>

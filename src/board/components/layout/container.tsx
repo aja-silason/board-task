@@ -1,7 +1,9 @@
-import { ReactNode, useEffect, useState } from "react"
+import { ReactNode } from "react"
 import { NavBar } from "./navbar";
 import { SideBar } from "./sidebar";
-import { SideBarMobile } from "./sidebar/mobile-sidebar";
+import { SideBarMobile } from "./sidebar/mobile-menu";
+import { NavBarMobile } from "./navbar/mobile-header";
+import { useScreen } from "../../context/screen.context";
 
 type props = {
     children: ReactNode;
@@ -9,29 +11,15 @@ type props = {
 
 export const Container = ({children}: props) => {
 
-    const [isVisible, setIsVisible] = useState(false);
-    const [isLargeScreen, setIsLargeScreen] = useState(false);
-
-    useEffect(() => {
-        const handleResize = () => {
-            if(window.innerWidth >= 850){
-                setIsLargeScreen(false);
-                setIsVisible(true);
-                return;
-            }
-            setIsVisible(false);
-
-            handleResize();
-
-            document.addEventListener("resize", handleResize);
-
-            return () => document.addEventListener("resize", handleResize);
-        }
-    }, []);
+    const {isLargeScreen, isVisible} = useScreen();
 
     return (
         <div className="flex flex-col">
-            <NavBar/>
+            
+            <NavBar  style={`z-50 sx:absolute md:relative ${isVisible && !isLargeScreen ? 'block' : 'hidden'} md:flex`}/>
+            
+            <NavBarMobile style={`z-50 sx:absolute md:relative ${isVisible && !isLargeScreen ? 'block' : 'block'} md:hidden`}/>
+
             <div className="flex gap-[1em] h-full bg-white">
                 
                 <SideBar style={`z-50 sx:absolute md:relative ${isVisible && !isLargeScreen ? 'block' : 'hidden'} md:block`}/>

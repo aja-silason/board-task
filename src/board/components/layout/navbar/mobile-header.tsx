@@ -5,13 +5,12 @@ import { IconNotification } from "../../card/action-notification.card";
 import { ProfileCard } from "../../card/profile.card";
 import ProfileModal from "../../modal/popover-profile";
 import NotificationModal from "../../modal/popover-notification";
-import SearchModal from "../../modal/modal-search";
 import { useEffect, useState } from "react";
 
 type props = {
     style: any
 }
-export const NavBar = ({style}: props) => {
+export const NavBarMobile = ({style}: props) => {
 
     const [imageProfile, setImageProfile] = useState<string>("");
     const [firstName, setFirstName] = useState<string>("");
@@ -29,20 +28,11 @@ export const NavBar = ({style}: props) => {
 
     }, [])
 
-
     return (
         <div className={`w-full border flex justify-between py-[.5em] px-[.5em] items-center bg-white ${style}`}>
             
             <div className="w-[100%]">
                 <img src={logo} alt="" className="w-[8em]"/>
-            </div>
-            
-            <div className="w-[100%]">
-
-                <SearchModal>
-                    <button type="button" className="border border-1 w-full rounded-[5px] p-[.5em] text-start py-[.5em] font-[500]">Pesquisar tarefas</button>
-                </SearchModal>
-
             </div>
             
             <div className="w-[100%] flex justify-end gap-[1em] items-center">
