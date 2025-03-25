@@ -6,13 +6,26 @@ import { ProfileCard } from "../../card/profile.card";
 import ProfileModal from "../../modal/popover-profile";
 import NotificationModal from "../../modal/popover-notification";
 import SearchModal from "../../modal/modal-search";
+import { useEffect, useState } from "react";
 
 export const NavBar = () => {
 
+    const [imageProfile, setImageProfile] = useState<string>("");
+    const [firstName, setFirstName] = useState<string>("");
+    
     const {user} = useAuth();
+    
+    console.log("USER DATA", user?.photoURL)
 
-    const profilePicture = user?.photoURL;
-    const oneLetter = user?.email?.split('')[0];
+    useEffect(() => {
+        const profilePicture = user?.photoURL;
+        const oneLetter = user?.email?.split('')[0];
+
+        setImageProfile(profilePicture);
+        setFirstName(oneLetter);
+
+    }, [])
+
 
     return (
         <div className="w-full border flex justify-between py-[.5em] px-[.5em] items-center bg-white">
@@ -38,9 +51,9 @@ export const NavBar = () => {
                 <ProfileModal data={user}>
                     <ProfileCard onClick={() => {}} hoverMessage="Perfil">
                         {
-                            profilePicture ? (
-                                <img src={profilePicture} alt="" className="rounded-[5em]"/> 
-                            ) : <p className="p-[.3em] font-[800]">{oneLetter?.toUpperCase()}</p>
+                            !imageProfile ? (
+                                <img src={"profilePicture"} alt="" className="rounded-[5em]"/> 
+                            ) : <p className="p-[.3em] font-[800]">{firstName?.toUpperCase()}</p>
                         }
                     </ProfileCard>
                 </ProfileModal>

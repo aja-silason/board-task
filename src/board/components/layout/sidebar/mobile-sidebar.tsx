@@ -15,7 +15,7 @@ type menuProps = {
 type props = {
     style: any
 }
-export const SideBar = ({style}: props) => {
+export const SideBarMobile = ({style}: props) => {
 
     const {setUser} = useAuth();
     
