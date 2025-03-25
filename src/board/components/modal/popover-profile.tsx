@@ -53,6 +53,7 @@ export default function ProfileModal({children, data}: props) {
   return (
     <div>
       <button aria-describedby={id} onClick={handleClick} className='bg-none border-none'>
+        <p>.</p>
         {children}
       </button>
       <Popover id={id} open={open} anchorEl={anchorEl} onClose={handleClose}

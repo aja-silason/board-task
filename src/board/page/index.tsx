@@ -39,8 +39,6 @@ export function Home(){
 
     const {isLargeScreen, isVisible} = useScreen();
 
-    console.log("LARGE", isLargeScreen, !isVisible)
-
     return (
         <Container>
 
