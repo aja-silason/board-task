@@ -81,20 +81,18 @@ export default function SearchModal({children}: props) {
                   
                   <div className='flex flex-col gap-[.5em] h-full overflow-auto'>
 
-                  {/*!isLargeScreen && isVisible*/}
-
                     {
 
                       filter == "" ? null : myTasks && myTasks.length > 0 ? (
                         myTasks.map((task) => (
                           <>
-                            <div className={`${!isLargeScreen && isVisible ? 'hidden' : 'block'}`}>
+                            <div className={`${!isLargeScreen && isVisible ? 'md:hidden' : 'md:flex hidden'}`}>
                               <TaskList key={task?.id} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id)} data={task}/>
                             </div>
                             
-                            <div className={`${!isLargeScreen && isVisible ? 'block' : 'hidden'}`}>
-                            <TaskListMobile key={task?.id} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id)} data={task}/>
-                          </div>
+                            <div className={`${!isLargeScreen && isVisible ? 'flex' : 'md:hidden'}`}>
+                              <TaskListMobile key={task?.id} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id)} data={task}/>
+                            </div>
                           </>
                         ))
                     ) : (

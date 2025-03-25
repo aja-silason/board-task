@@ -52,8 +52,6 @@ export const TaskList = ({data, hoverMessage, onClick}: props) => {
 
 export const TaskListMobile = ({data, hoverMessage, onClick}: props) => {
 
-    //const {isLargeScreen, isVisible} = useScreen();
-
     const centerLetter = data?.title?.split('')[0];
 
     const title = shortText(data?.title, 30);
@@ -66,7 +64,7 @@ export const TaskListMobile = ({data, hoverMessage, onClick}: props) => {
 
             <div className="w-full h-full justify-between flex gap-[.5em]">
                 
-                <div className="flex gap-[.5em] items-center w-[50%]">
+                <div className="flex gap-[.5em] items-center w-[100%]">
                     <div className="bg-[#eee] border rounded-[.5em] h-full w-[3em] flex items-center justify-center">
                         <h3 className="text-black border px-[.5em] rounded-[.3em] bg-white font-[800]">{centerLetter}</h3>
                     </div>
