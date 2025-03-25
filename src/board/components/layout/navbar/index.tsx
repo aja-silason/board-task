@@ -17,8 +17,6 @@ export const NavBar = ({style}: props) => {
     const [firstName, setFirstName] = useState<string>("");
     
     const {user} = useAuth();
-    
-    console.log("USER DATA", user?.photoURL)
 
     useEffect(() => {
         const profilePicture = user?.photoURL;

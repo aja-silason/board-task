@@ -6,9 +6,11 @@ import Fade from '@mui/material/Fade';
 import { Input } from '../input-data/input';
 import { useCommom } from '../../context/common.context';
 import { NoData } from '../behavior/nodata';
-import { TaskList } from '../card/task-list.card';
+import { TaskList, TaskListMobile } from '../card/task-list.card';
 import { useGetData } from '../../hook/get/useGetData';
 import { useInternNavigation } from '../../hook/behavior/useNavigation';
+import { X } from '@phosphor-icons/react';
+import { useScreen } from '../../context/screen.context';
 
 const style = {
   position: 'absolute',
@@ -37,6 +39,8 @@ export default function SearchModal({children}: props) {
 
     const myTasks = data?.filter((item) => item?.ownerId === parsedUserData?.uid && item?.participants?.includes(parsedUserData?.uid) && item?.title?.includes(filter));
 
+    const {isLargeScreen, isVisible} = useScreen();
+
 
   return (
     <div>
@@ -61,7 +65,11 @@ export default function SearchModal({children}: props) {
         <Fade in={open}>
           <Box sx={style}>
           <div className='flex items-center h-[40em] justify-center w-full'>
-            <div className='md:w-[70%] w-full bg-white h-full p-[2em]'>
+            <div className='md:w-[70%] w-full bg-white h-full p-[1em] md:p-[2em]'>
+
+              <span className='flex mb-[1em] items-end justify-end'>
+                <X className='' size={20}/>
+              </span>
 
               <div className='mb-4'>
                   <Input name="filter" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilter(e?.target?.value)} placeholder="Pesquisar tarefas" value={filter} type="text" style={{height: "40px", outline: "none"}}/>
@@ -73,11 +81,21 @@ export default function SearchModal({children}: props) {
                   
                   <div className='flex flex-col gap-[.5em] h-full overflow-auto'>
 
+                  {/*!isLargeScreen && isVisible*/}
+
                     {
 
                       filter == "" ? null : myTasks && myTasks.length > 0 ? (
                         myTasks.map((task) => (
-                            <TaskList key={task?.id} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id)} data={task}/>
+                          <>
+                            <div className={`${!isLargeScreen && isVisible ? 'hidden' : 'block'}`}>
+                              <TaskList key={task?.id} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id)} data={task}/>
+                            </div>
+                            
+                            <div className={`${!isLargeScreen && isVisible ? 'block' : 'hidden'}`}>
+                            <TaskListMobile key={task?.id} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id)} data={task}/>
+                          </div>
+                          </>
                         ))
                     ) : (
                         <NoData text="Não pertence a outras tarefas no momento" />
