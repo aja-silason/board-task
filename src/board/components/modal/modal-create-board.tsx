@@ -55,7 +55,7 @@ export default function CreateBoardModal({children}: props) {
         <Fade in={open}>
           <Box sx={style}>
             <div className='flex items-center justify-center w-full'>
-              <div className='md:w-[50%] w-[100%] bg-white p-[2em]'>
+              <div className='md:w-[50%] w-[100%] bg-white p-[1.5em]'>
                 <div className='flex items-center justify-between mb-[.5em]'>
                   <Text text="Criar Quadro" style={{fontSize: "14pt"}}/>
                   
