@@ -33,7 +33,7 @@ export function LogIn({user}: props){
     return (
         <div className={`w-full h-screen flex flex-col items-center justify-center`}>
             
-            <div className={`flex flex-col items-center justify-center md:border md:w-[35%] md:justify-center rounded-[.5em] gap-[1em] p-[3em]`}>
+            <div className={`flex flex-col items-center justify-center md:border md:w-[35%] w-full md:justify-center rounded-[.5em] gap-[1em] md:p-[3em] p-[1em]`}>
                 
 
                 <div className="flex flex-col items-center text-center mb-[1em]">

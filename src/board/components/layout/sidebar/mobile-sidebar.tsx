@@ -44,40 +44,38 @@ export const SideBarMobile = ({style}: props) => {
     const location = useLocation();
 
     return (
-        <div className={`border md:w-[18%] md:h-[92vh] px-[.4em] pt-[1em] flex flex-col gap-[.5em] bg-white ${style}`}>
+        <div className={`border-t md:w-[18%] md:h-[65px] fixed bottom-0 w-full px-[.4em] pt-[1em] flex flex-col gap-[.5em] bg-white ${style}`}>
 
-            <nav className="flex flex-col justify-between h-[90%]">
+            <nav className="flex flex-row h-[90%] justify-between">
 
-                <div className="flex flex-col gap-[.5em]">
-                {
-                    menu?.map((menu: menuProps) => {
+                <div className="flex flex-row w-full justify-center gap-[2em]">
+                    {
+                        menu?.map((menu: menuProps) => {
 
-                        const isActive = location?.pathname === menu?.to;
+                            const isActive = location?.pathname === menu?.to;
 
-                        return (
-                                <Link to={menu?.to}>
-                                    <li className={`flex ${isActive ? 'bg-[#000] text-white' : 'bg-white text-[#444]'}  p-[.5em] font-[600] rounded-[.3em] gap-[.5em]`}>
-                                        <div className={`w-[.2em] rounded-[.5em] ${isActive && 'bg-[#fff]'}`}></div>
-                                        <div className="flex gap-[.3em] items-center">
-                                            {menu?.icon}
-                                            <p className="text-[10pt]">{menu?.menutext}</p>
-                                        </div>
-                                    </li>
-                                </Link>
-                        )
-                    })
-                }
+                            return (
+                                    <Link to={menu?.to}>
+                                        <li className={`flex ${isActive ? 'bg-[#000] text-white' : 'bg-white text-[#444]'}  p-[.5em] font-[600] rounded-[.3em] gap-[.5em]`}>
+                                            <div className="flex gap-[.3em] items-center">
+                                                {menu?.icon}
+                                            </div>
+                                        </li>
+                                    </Link>
+                            )
+                        })
+                    }
+
+                    <button type="button" onClick={handleSigOut}>
+                        <li className={`flex hover:bg-[#000] hover:text-white text-[#444]  p-[.5em] font-[600] rounded-[.3em] gap-[.5em]`}>
+                            <div className={`w-[.2em] rounded-[.5em] bg-[#fff]`}></div>
+                            <div className="flex gap-[.3em] items-center">
+                                <SignOut size={20}/>
+                            </div>
+                        </li>
+                    </button>
                 </div>
 
-                <button type="button" onClick={handleSigOut} className="w-full">
-                    <li className={`flex hover:bg-[#000] hover:text-white text-[#444]  p-[.5em] font-[600] rounded-[.3em] gap-[.5em]`}>
-                        <div className={`w-[.2em] rounded-[.5em] bg-[#fff]`}></div>
-                        <div className="flex gap-[.3em] items-center">
-                            <SignOut size={20}/>
-                            <p className="text-[10pt]">Terminar sessão</p>
-                        </div>
-                    </li>
-                </button>
         </nav>
 
         </div>
