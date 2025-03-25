@@ -14,11 +14,11 @@ const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
+  width: '100%', 
   transform: 'translate(-50%, -50%)',
-  width: 800,
-  bgcolor: 'background.paper',
+  // bgcolor: 'background.paper',
   border: '0px solid #000',
-  boxShadow: 24,
+  // boxShadow: 24,
   p: 4,
 };
 type props = {
@@ -54,39 +54,43 @@ export default function CreateBoardModal({children}: props) {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <div className='flex items-center justify-between mb-[.5em]'>
-              <Text text="Criar Quadro" style={{fontSize: "14pt"}}/>
-              
-              <span className='border rounded-[5em] flex flex-col items-center justify-center p-[.4em]' onClick={handleClose}>
-                <X size={20} className='font-bold cursor-pointer'/>
-              </span>
-            </div>
-
-            <hr />
-
-            <div className='flex flex-col gap-[1em] mt-[1em] h-[90%]'> 
-
-              <form onSubmit={handleSubmit}>
-
-                <div className='flex flex-col h-full gap-[1em] overflow-auto'>
-
-                  <div className='flex flex-col gap-[.5em]'>
-                    <Text text="Tarefa *"/>
-                    <Input name="title" onChange={handleChange} placeholder="" value={data?.title} type="text" style={{}}/>
-                  </div>
-
-                  <div className='flex flex-col gap-[.5em] h-[20em]'>
-                    <Text text="Descreva o seu quadro *"/>
-                    <TextArea name="description" onChange={handleChange} placeholder="" value={data?.description}  style={{}}/>
-                  </div>
-
-                  <Button text='Criar Quadro' type='submit' isLoading={isLoading}/>
-
-                    
+            <div className='flex items-center justify-center w-full'>
+              <div className='md:w-[50%] w-[100%] bg-white p-[2em]'>
+                <div className='flex items-center justify-between mb-[.5em]'>
+                  <Text text="Criar Quadro" style={{fontSize: "14pt"}}/>
+                  
+                  <span className='border rounded-[5em] flex flex-col items-center justify-center p-[.4em]' onClick={handleClose}>
+                    <X size={20} className='font-bold cursor-pointer'/>
+                  </span>
                 </div>
 
-              </form>
-                
+                <hr />
+
+                <div className='flex flex-col gap-[1em] mt-[1em] h-[90%]'> 
+
+                  <form onSubmit={handleSubmit}>
+
+                    <div className='flex flex-col h-full gap-[1em] overflow-auto'>
+
+                      <div className='flex flex-col gap-[.5em]'>
+                        <Text text="Tarefa *"/>
+                        <Input name="title" onChange={handleChange} placeholder="" value={data?.title} type="text" style={{}}/>
+                      </div>
+
+                      <div className='flex flex-col gap-[.5em] h-[20em]'>
+                        <Text text="Descreva o seu quadro *"/>
+                        <TextArea name="description" onChange={handleChange} placeholder="" value={data?.description}  style={{}}/>
+                      </div>
+
+                      <Button text='Criar Quadro' type='submit' isLoading={isLoading}/>
+
+                        
+                    </div>
+
+                  </form>
+                    
+                </div>
+              </div>
             </div>
           </Box>
         </Fade>

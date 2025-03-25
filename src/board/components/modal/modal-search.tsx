@@ -66,7 +66,7 @@ export default function SearchModal({children}: props) {
           <Box sx={style}>
 
             <div className='mb-4'>
-                <Input name="filter" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilter(e?.target?.value)} placeholder="Pesquisar tarefas" value={filter} type="text" style={{height: "40px"}}/>
+                <Input name="filter" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilter(e?.target?.value)} placeholder="Pesquisar tarefas" value={filter} type="text" style={{height: "40px", outline: "none"}}/>
             </div>
 
             <hr />

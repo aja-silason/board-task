@@ -43,7 +43,7 @@ export function Home(){
                 
                 <div className="w-[100%]">
                     <SearchModal>
-                        <button type="button" className="border border-1 w-full rounded-[5px] p-[.5em] text-start py-[.5em] font-[500]">Pesquisar tarefas</button>
+                        <button type="button" className="border border-1 w-full outline-none rounded-[5px] p-[.5em] text-start py-[.5em] font-[500]">Pesquisar tarefas</button>
                     </SearchModal>
                 </div>
 
@@ -62,9 +62,9 @@ export function Home(){
                                 <NoData text="Sem informação para mostrar no momento"/>
                             ) :
                             myTasks?.map((task: any, index: number) => {
-                                    return (
-                                        <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
-                                    )
+                                return (
+                                    <TaskCard key={index} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id) } data={task}/>
+                                )
                             })
                         }
                     </div>
