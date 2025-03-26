@@ -41,7 +41,7 @@ export const useCreateBoard = () => {
         try {
 
             const payload: props = {
-                boardId: crypto?.randomUUID(),
+                //boardId: crypto?.randomUUID(),
                 title: data?.title,
                 description: data?.description,
                 ownerId: parsedData?.uid,

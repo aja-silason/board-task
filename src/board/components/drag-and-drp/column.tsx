@@ -34,7 +34,7 @@ const Column: React.FC<ColumnProps> = ({ items, title, onDrop, columnId }) => {
 
 
   return (
-    <div className="column border p-[1em] rounded-[.5em] md:w-[100%] h-[35em] flex flex-col gap-[1em] overflow-auto"
+    <div className="column border p-[1em] rounded-[.5em] md:w-[20em] h-[35em] flex flex-col gap-[1em] overflow-auto"
       onDragOver={handleDragOver}
       onDrop={handleDrop}>
       
@@ -43,7 +43,7 @@ const Column: React.FC<ColumnProps> = ({ items, title, onDrop, columnId }) => {
         <hr />
       </div>
 
-      <div className="flex flex-col gap-[1em] overflow-auto h-[30em]">
+      <div className="flex flex-col w-full gap-[1em] overflow-auto h-[30em]">
         {items?.map((item: any, index: number) => (
           <TaskModal data={item} children ={
               <div key={index} draggable onDragStart={(e) => handleDragStart(e, item.id)} className=" border cursor-pointer rounded-[.5em] p-[1em] flex flex-col gap-[.5em]">

@@ -13,14 +13,9 @@ const BoardTasks = ({datas}: board) => {
   const filterTask = taskData?.filter((task) => boardData?.task?.includes(task?.id));
 
   return (
-    <div>
-      <h3>Tarefas do Board</h3>
-
-      <div className="">
+      <div className="md:w-[80em] w-[100%]  flex">
         <DragAndDrop datas={filterTask}/>
       </div>
-
-    </div>
   );
 };
 

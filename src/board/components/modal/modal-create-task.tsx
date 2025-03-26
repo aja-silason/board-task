@@ -15,10 +15,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 800,
-  bgcolor: 'background.paper',
-  border: '0px solid #000',
-  boxShadow: 24,
+  width: "100%",
   p: 4,
 };
 type props = {
@@ -54,6 +51,8 @@ export default function CreateTaskModal({children}: props) {
       >
         <Fade in={open}>
           <Box sx={style}>
+          <div className='flex items-center h-[40em] justify-center w-full'>
+          <div className='md:w-[40%] w-full bg-white h-full p-[1em] md:p-[2em]'>
             <div className='flex items-center justify-between mb-[.5em]'>
               <Text text="Adicionar Tarefa" style={{fontSize: "14pt"}}/>
               
@@ -87,6 +86,8 @@ export default function CreateTaskModal({children}: props) {
 
               </form>
                 
+            </div>
+            </div>
             </div>
           </Box>
         </Fade>

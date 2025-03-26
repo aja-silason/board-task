@@ -1,5 +1,5 @@
 import { TabButton } from "../components/button/tab.button";
-import { TaskList } from "../components/card/task-list.card";
+import { TaskList, TaskListMobile } from "../components/card/task-list.card";
 import { TaskCard } from "../components/card/task.card";
 import { Container } from "../components/layout/container"
 import { Text } from "../components/text/text";
@@ -7,6 +7,7 @@ import { useToogle } from "../hook/behavior/useToogle";
 import { useInternNavigation } from "../hook/behavior/useNavigation";
 import { useGetData } from "../hook/get/useGetData";
 import { NoData } from "../components/behavior/nodata";
+import { useScreen } from "../context/screen.context";
 
 export type taskProps = {
     id: number,
@@ -25,6 +26,8 @@ export function Task(){
     const {handleNavigateToProfileTask} = useInternNavigation();
 
     const {data} = useGetData("boards");
+
+    const {isVisible, isLargeScreen} = useScreen();
 
 
     const storageUserData = localStorage?.getItem("userData");
@@ -78,23 +81,33 @@ export function Task(){
                     {
                         isSecond && (
                             <div className="md:h-[30em]">
-                                <Text text="Tarefas que fazes parte" style={{fontWeight: 600}}/>
 
-                                <div className="flex justify-between w-full px-[1em]">
+                                <div className={` ${!isLargeScreen && isVisible ? 'md:flex' : 'md:flex hidden'} justify-between w-full px-[1em]`}>
                                     <Text text="Tarefa" color="gray"/>
                                     <Text text="Usuários associados" color="gray" style={{width: "20%", textAlign: "center"}}/>
                                     <Text text="Criador" color="gray"/>
                                 </div>
 
                                 <div className=" flex gap-[.2em] w-full flex-col md:h-[40em] overflow-auto">
+
+                                {
                                 
-                                {tasksThatIMakePart && tasksThatIMakePart.length > 0 ? (
-                                        tasksThatIMakePart.map((task) => (
+                                  tasksThatIMakePart && myTasks.length > 0 ? (
+                                    tasksThatIMakePart.map((task) => (
+                                        <>
+                                        <div className={`${!isLargeScreen && isVisible ? 'md:hidden' : 'md:flex hidden'}`}>
                                             <TaskList key={task?.id} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id)} data={task}/>
-                                        ))
-                                    ) : (
-                                        <NoData text="Não pertence a outras tarefas no momento" />
-                                    )}
+                                        </div>
+                                        
+                                        <div className={`${!isLargeScreen && isVisible ? 'flex' : 'md:hidden'}`}>
+                                            <TaskListMobile key={task?.id} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id)} data={task}/>
+                                        </div>
+                                        </>
+                                    ))
+                                ) : (
+                                    <NoData text="Não pertence a outras tarefas no momento" />
+                                )
+                                } 
                                     
                                 </div>
                             </div>

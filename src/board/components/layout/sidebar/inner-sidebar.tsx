@@ -20,7 +20,7 @@ export const InnerTaskSideBar = () => {
     ] 
 
     return (
-        <div className="w-[18%] px-[.4em] pt-[1em] flex flex-col gap-[.8em] bg-white">
+        <div className="w-full px-[.4em] pt-[1em] flex flex-col gap-[.8em] bg-white">
             
             {
                 menu?.map((menu: menuProps, index: number) => {

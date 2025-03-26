@@ -75,7 +75,9 @@ export function Home(){
                     </div>
 
 
-                    <Text text="Tarefas que foste adicionado recentemente" style={{fontWeight: 600}}/>
+                    <span className={`${!isLargeScreen && isVisible ? 'hidden' : 'md:block hidden'}`}>
+                        <Text text="Tarefas que foste adicionado recentemente" style={{fontWeight: 600}}/>
+                    </span>
 
                     <div className={`${!isLargeScreen && isVisible ? 'flex' : 'hidden'} md:flex justify-between w-full px-[1em]`}>
                         <Text text="Tarefa" color="gray"/>

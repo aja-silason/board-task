@@ -6,11 +6,10 @@ import Fade from '@mui/material/Fade';
 import { Input } from '../input-data/input';
 import { useCommom } from '../../context/common.context';
 import { NoData } from '../behavior/nodata';
-import { TaskList, TaskListMobile } from '../card/task-list.card';
 import { useGetData } from '../../hook/get/useGetData';
-import { useInternNavigation } from '../../hook/behavior/useNavigation';
 import { X } from '@phosphor-icons/react';
-import { useScreen } from '../../context/screen.context';
+import { UserList } from '../card/user-list.card ';
+import SendInviteAndSeeProfileModal from './popover-user-send-invite-and-see-profile';
 
 const style = {
   position: 'absolute',
@@ -22,24 +21,21 @@ const style = {
 };
 type props = {
     children: React.ReactNode;
+    data: any
 }
 
-export default function SearchModal({children}: props) {
+export default function AddParticipantsModal({children, data}: props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const {filter, setFilter} = useCommom();
 
-    const {data} = useGetData("boards");
-    const {handleNavigateToProfileTask} = useInternNavigation();
+    const {data: user} = useGetData("users");
+    //const {data: user} = useGetData("users");
 
-    const storageUserData = localStorage?.getItem("userData");
-    const parsedUserData = storageUserData && JSON.parse(storageUserData);
+    const users = user?.filter((item) => item?.username?.includes(filter) || item?.email?.includes(filter));
 
-    const myTasks = data?.filter((item) => item?.ownerId === parsedUserData?.uid && item?.participants?.includes(parsedUserData?.uid) && item?.title?.includes(filter));
-
-    const {isLargeScreen, isVisible} = useScreen();
 
 
   return (
@@ -72,7 +68,7 @@ export default function SearchModal({children}: props) {
               </span>
 
               <div className='mb-4'>
-                  <Input name="filter" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilter(e?.target?.value)} placeholder="Pesquisar tarefas" value={filter} type="text" style={{height: "40px", outline: "none"}}/>
+                  <Input name="filter" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilter(e?.target?.value)} placeholder="Pesquisar Usuários" value={filter} type="text" style={{height: "40px", outline: "none"}}/>
               </div>
 
               <hr />
@@ -83,20 +79,14 @@ export default function SearchModal({children}: props) {
 
                     {
 
-                      filter == "" ? null : myTasks && myTasks.length > 0 ? (
-                        myTasks.map((task) => (
-                          <>
-                            <div className={`${!isLargeScreen && isVisible ? 'md:hidden' : 'md:flex hidden'}`}>
-                              <TaskList key={task?.id} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id)} data={task}/>
-                            </div>
-                            
-                            <div className={`${!isLargeScreen && isVisible ? 'flex' : 'md:hidden'}`}>
-                              <TaskListMobile key={task?.id} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id)} data={task}/>
-                            </div>
-                          </>
+                      filter == "" ? null : users && users.length > 0 ? (
+                        users.map((user) => (
+                          <SendInviteAndSeeProfileModal boardData={data} data={user} children={
+                            <UserList key={user?.id} hoverMessage={user?.username} onClick={() => {}} data={user}/>}
+                          />
                         ))
                     ) : (
-                        <NoData text="Não pertence a outras tarefas no momento" />
+                        <NoData text="Usuário não encontrado" />
                     )
                     } 
 

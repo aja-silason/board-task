@@ -2,6 +2,7 @@
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db } from "../../../firebase.config";
 import Column from "./column";
+import { useScreen } from "../../context/screen.context";
 
 type dragProps = {
   datas: any
@@ -41,8 +42,10 @@ export const DragAndDrop = ({datas}: dragProps) => {
     }
   }; 
 
+  const {isLargeScreen, isVisible} = useScreen();
+
   return (
-    <div className="flex justify-between gap-[2em]">
+    <div className={`flex overflow-auto ${!isLargeScreen && isVisible ? 'w-[100em] md:w-[100em] md:border-red-400' : 'md:w-[80em]  w-[90em] md:gap-[2em] gap-[1em] '}`}>
       <Column
         title="A Fazer"
         items={pending}
