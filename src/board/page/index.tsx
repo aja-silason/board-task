@@ -37,6 +37,12 @@ export function Home(){
     const tasksThatIMakePart = data?.filter((item) => item?.participants?.includes
     (parsedUserData?.uid));
 
+    //const tasksThatIMakePart2 = data?.filter((item) => item?.participants?.id == "AJrBcqkzxzXR5iwx2aPAaGSUPBx2");
+    
+    const tasksThatIMakePart2 = data?.map((item) => item?.participants)?.flat()?.filter((item) => item?.id == parsedUserData?.uid);
+
+    console.log("ertyu", myTasks);
+
     const {isLargeScreen, isVisible} = useScreen();
 
     return (
@@ -88,7 +94,7 @@ export function Home(){
                     <div className={` ${!isLargeScreen && isVisible ? 'flex' : 'hidden'} md:flex gap-[.2em] w-full flex-wrap h-[10em] overflow-auto`}>
                     
                     { 
-                        tasksThatIMakePart && tasksThatIMakePart.length > 0 ? (
+                        tasksThatIMakePart2 && tasksThatIMakePart2.length > 0 ? (
                             tasksThatIMakePart.map((task) => (
                                 <TaskList key={task?.id} hoverMessage={task?.title} onClick={() => handleNavigateToProfileTask(task?.id)} data={task}/>
                             ))

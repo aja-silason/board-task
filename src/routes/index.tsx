@@ -24,7 +24,7 @@ export function RoutesApp() {
                 <Route path="/home" element={<ProtectedRoute user={user}><Home/></ProtectedRoute>} />
                 <Route path="/tasks" element={<ProtectedRoute user={user}><Task/></ProtectedRoute>} />
                 <Route path="/task/:id" element={<ProtectedRoute user={user}><ProfileTask/></ProtectedRoute>} />
-                <Route path="/invite/:id" element={<ProtectedRoute user={user}><Invite/></ProtectedRoute>} />
+                <Route path="/invite/:data" element={<ProtectedRoute user={user}><Invite/></ProtectedRoute>} />
                 
                 {/*<Route path="/drag" element={<DragAndDropApp/>} />*/}
                 <Route path="/register" element={<Register/>} />

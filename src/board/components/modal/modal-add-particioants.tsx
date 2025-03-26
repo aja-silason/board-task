@@ -36,8 +36,6 @@ export default function AddParticipantsModal({children, data}: props) {
 
     const users = user?.filter((item) => item?.username?.includes(filter) || item?.email?.includes(filter));
 
-
-
   return (
     <div>
 

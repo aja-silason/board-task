@@ -9,6 +9,9 @@ import BoardTasks from "../components/drag-and-drp/board";
 import { useScreen } from "../context/screen.context";
 import { Text } from "../components/text/text";
 import AddParticipantsModal from "../components/modal/modal-add-particioants";
+import { NoData } from "../components/behavior/nodata";
+import { UserList } from "../components/card/user-list.card ";
+import SendInviteAndSeeProfileModal from "../components/modal/popover-user-send-invite-and-see-profile";
 
 export type taskProps = {
     id: number,
@@ -34,7 +37,11 @@ export function ProfileTask(){
 
     const filterTask: any = data?.filter((task) => task?.id?.includes(id));
 
+    const usersIntoTheTask = filterTask?.map((item: any) => item?.participants);
+
     const {isLargeScreen, isVisible} = useScreen();
+
+    const {data: user} = useGetData("users");
 
     return (
         <Container>
@@ -61,6 +68,19 @@ export function ProfileTask(){
                                     <AddParticipantsModal data={filterTask[0]} children={<Button text="Adicionar Participante" style={{height: "40px"}}/>}/>
                                 </div>
                                 <Text text="Participantes"/>
+
+                                {
+                                
+                                    user && user.length > 0 ? (
+                                    usersIntoTheTask.map((user: any) => (
+                                        <SendInviteAndSeeProfileModal boardData={data} data={user} children={
+                                        <UserList key={user?.id} hoverMessage={user?.username} onClick={() => {}} data={user}/>}
+                                        />
+                                    ))
+                                ) : (
+                                    <NoData text="Usuário não encontrado" />
+                                )
+                                } 
                                 
 
                             </div>

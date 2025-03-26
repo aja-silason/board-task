@@ -48,12 +48,10 @@ export default function ProfileModal({children, data}: props) {
     const profilePicture = data?.photoURL;
     const oneLetter = data?.email?.split('')[0];
 
-    console.log("DATA", data);
-
   return (
     <div>
       <button aria-describedby={id} onClick={handleClick} className='bg-none border-none'>
-        <p>.</p>
+        <p className='absolute text-white hover:text-black'>.</p>
         {children}
       </button>
       <Popover id={id} open={open} anchorEl={anchorEl} onClose={handleClose}

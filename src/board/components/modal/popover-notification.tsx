@@ -26,6 +26,12 @@ export default function NotificationModal({children}: props) {
 
   const {data: invites} = useGetData("invites")
 
+  
+  const userdata = localStorage.getItem("userData");
+  const parsedData = userdata && JSON.parse(userdata);
+  
+  const filterInvite = invites?.filter((item) => item?.participantId?.includes(parsedData?.uid));
+
   return (
     <div>
       <button aria-describedby={id} onClick={handleClick} className='bg-none border-none'>
@@ -40,17 +46,17 @@ export default function NotificationModal({children}: props) {
 
         <Typography sx={{ p: 2 }}>
           {
-            invites?.length > 0 ? (
-              invites?.map((data: any, index: number) => (
-                <Link to={`/invite/${data?.id}`}>
-                  <div className='border rounded-[7px] px-[1em] py-[.5em] w-[20em] my-[.5em]' key={index}>
+            filterInvite?.length > 0 ? (
+              filterInvite?.map((invite: any, index: number) => (
+                <Link to={`/invite/${JSON?.stringify(invite)}`}>
+                  <div className='border rounded-[7px] px-[1em] py-[.5em] w-[25em] my-[.5em]' key={index}>
                     <span className='flex gap-[.2em]'>
                       <Text text="Convite de:" style={{fontSize: "10pt"}}/>
-                      <Text text="Jair Bolsonaro" style={{fontWeight: 700, fontSize: "10pt"}}/>
+                      <Text text={invite?.owner} style={{fontWeight: 700, fontSize: "10pt"}}/>
                     </span>
                     <span className='flex gap-[.2em]'>
                       <Text text="Quadro" style={{fontSize: "10pt"}}/>
-                      <Text text="Alinhamento da Statement MC" style={{fontWeight: 700, fontSize: "10pt"}}/>
+                      <Text text={invite?.board} style={{fontWeight: 700, fontSize: "10pt"}}/>
                     </span>
                   </div>
                 </Link>
