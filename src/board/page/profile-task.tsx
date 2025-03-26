@@ -78,7 +78,7 @@ export function ProfileTask(){
                                         />
                                     ))
                                 ) : (
-                                    <NoData text="Usuário não encontrado" />
+                                    <NoData text="Sem usuário associados" />
                                 )
                                 } 
                                 
